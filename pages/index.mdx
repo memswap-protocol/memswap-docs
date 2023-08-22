@@ -1,31 +1,27 @@
-# **MemSwap: A Decentralized “Intents-based” Protocol for Efficient and Transparent Token Swaps Leveraging the Ethereum Mempool**
+## **MemSwap - A Fully Decentralized Swap Aggergator**
 
-**Abstract**
-MemSwap is an EVM protocol that introduces an efficient and transparent mechanism for conducting fully decentralized “intents-based” token swaps. The protocol leverages dutch auctions and propagates intents using the ethereum mempool, resulting in a permissionless, general, and transparent swap aggregator. 
+Recently several protocols have been developed based on the core premise of intents. Intents allows users to express desirable outcomes without the need to specify specific transactional routes, leading to a variety of UX benefits, including improved price execution for swappers due to decentralized aggregation and MEV capture (LINK). While Intents protocols promise significant user benefits, they unveil a new set of design challenges and tradeoffs.. For intent based swap protocols, there are a few key considerations. First, how might we mitigate MEV externalities through price improvements for swappers? And second, how might we do so without (significantly) sacrificing the core tenets of decentralization? MemSwap is an attempt to improve on current designs, by providing the best value to users, with limited additional costs.
 
-**Introduction**
-Recently several swap protocols have been developed based on the core premise of intents (CITE). Intents allows users to express desirable outcomes without the need to specify specific transactional routes, leading to a variety of UX benefits (links). To-date, the developed protocols have chosen centralization measures due to a lack of known mechanics for decentralized intents-based models. MemSwap proposes a new, decentralized implementation of intents-based swaps using *transaction-wrapped intents* (TWIs) and the ethereum mempool as a decentralized orderbook. 
+From a user’s perspective Memswap, is functionally similar to Cowswap, 1inch Fusion or UniswapX:
 
-The key benefits of MemSwap are: 
+- User submits an “intent” (order) of what they want to swap (but not how)
+- Solvers compete to fill at the best possible rate
 
-* **Improved price execution**: Similar to other intents-based aggregators, MemSwap improves price execution for swappers through competition to provide the optimal route and internalize MEV.
-* **Eth, ERC-20, and ERC-721 compatibility**: Due to the structure of transaction-wrapped intents, MemSwap works with Eth pairs, as well as all ERC-20s and NFTs, with no approvals needed.
-* **No approvals**: Unlimited approvals are a known security risk for users. Memswaps design avoids the need for approvals.
-* **Real-time block finality price improvement:** There is no need for exclusive filling rights based on off-chain auctions, so interblock price changes can be leveraged to improve swap prices.
-* **DoS resistance**: MemSwap eliminates the DoS attack vector, a common concern for intents in open, permissionless mempools.
-* **No offchain orderbooks:** The protocol uses the ethereum mempool for propagation of swap intents, meaning no permissioned or opaque orderbook is required.
-* **No centralized APIs**: Centralized APIs present a censorship risk for developers, where affordances for centralized APIs improve UX, decentralized alternatives are important backstops.
-* **No private RFQ**: Private RFQ requires trusted actors to fill proposed routes.  Where centralization leads to improved UX, users may layer centralized or private solutions atop MemSwap, while remaining confident in a decentralized core.&#x20;
+But instead of a centralized API, Memswap leverages the Ethereum mempool to distribute orders.
 
-We outline the basic design and discuss details of the necessary components further below.
+Swaps on Memswap are executed across two transactions:
 
-**MemSwap Design**
-The core of MemSwap is in the idea of *transaction-wrapped intents.* The basic principle is that a user, expecting an intent to be fulfilled, may embed the conditions of their intent inside a transaction’s calldata, and transfer any tokens required for the swap. Solvers may then parse intents from the ethereum mempool and submit bundles to block builders once they can fulfill the conditions of the intent. To explore this further we walk through an exemplary MemSwap:
+1. Swapper sends a regular transfer (ETH) or approval (ERC20/NFT), with their order appended in the calldata.
+2. Solvers watch the mempool and submit a swap tx leveraging the users’ assets.
 
-1. Alice wishes to swap 1 Eth for USDC using MemSwap. Alice submits a transaction transferring 1Eth to MemSwap with the intent to get a maximum quantity of USDC with a lower bound of 1791, with a 0.5% decay over two blocks. 
-2. In block t, Alice’s intent can only be fulfilled if a solver can provide 1809 USDC to Alice. No such route exists.&#x20;
-3. In block t + 1, Alice’s intent can only be fulfilled if the route can provide 1800 USDC to Alice. A searcher finds a route to fulfill this intent, and submits the bundle to a block builder. Since there is only one bundle using this route, the entire market benefit is internalized by Alice (minus the solver’s fee). 
+In the case that a matchmaker is nominated, searchers send proposed solutions to the matchmaker, who authorizes bundles prior to searchers submitting txs to builders.
 
-The above example is simplified, we discuss all necessary components in more detail below. 
+MemSwap introduces two innovations resulting in both improved price execution and limited centralization:
 
-*Diagram*
+**Intentful Transactions** - MemSwap introduces a novel mechanic for distributing intents using the Ethereum Mempool. Rather than submitting approval transactions and then intents to a private orderbook. MemSwap couples these actions. A user submits an approval transaction to the ethereum mempool with the associated intent appended in the transactions calldata. More details on intentful transactions can be found here.
+
+Open Forwarders - MemSwap introduces opt-in and open-source Forwarders, which can be used if desired for improved price execution. Users or applications may choose to nominate a forwarder when submitting intents. Forwarders play the role of improving price execution by selecting the best solution to the batch of intents and submitting the associated txs to builders. Additionally, the canonical MemSwap forwarder is designed to improve price execution by opening the market for searchers and enabling price updating up to the point the block is mined. More details on Fowarders can be found here.
+
+NO MATCHMAKER FLOW DIAGRAM
+
+MATCHMAKER FLOW DIAGRAM
