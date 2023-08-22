@@ -1,11 +1,27 @@
 {
-  "index": "Introduction",
-  "another": "Another Page",
-  "advanced": "Advanced (A Folder)",
+  "MemSwapOverview": "MemSwap Protocol Overview",
+  "-- UnderstandingMemSwap": {
+    "type": "separator",
+    "title": "MemSwap Protocol"
+  },
+  "index": "What is MemSwap?",
+
+  "IntentfulTransactions": "Intentful Transactions (MemBook)",
+  "searchers": "Searchers",
+  "forwarders": "Forwarders",
+  "integrating": "Integrating MemSwap",
   "about": {
     "title": "About",
     "type": "page"
   },
+  "-- Utils": {
+    "type": "separator",
+    "title": "Utils"
+  },
+
+  "securitycontracts": "Security & Contracts",
+  "FAQ": "FAQ",
+
   "contact": {
     "title": "Contact ↗",
     "type": "page",
