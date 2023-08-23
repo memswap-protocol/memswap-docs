@@ -6,9 +6,9 @@
   },
   "index": "What is MemSwap?",
 
-  "IntentfulTransactions": "Intentful Transactions (MemBook)",
+  "intentfultransactions": "Intentful Transactions (MemBook)",
   "searchers": "Searchers",
-  "forwarders": "Forwarders",
+  "matchmakers": "Matchmakers",
   "integrating": "Integrating MemSwap",
   "about": {
     "title": "About",

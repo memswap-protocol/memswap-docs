@@ -1,3 +1,36 @@
+export function FAQBox({ title, children }) {
+  return (
+    <details
+      open
+      className="last-of-type:mb-0 rounded-lg bg-neutral-50 dark:bg-neutral-800 p-2 mt-4"
+    >
+      <summary>
+        <strong className="text-lg">{title}</strong>
+      </summary>
+      <div className="nx-p-2">{children}</div>
+    </details>
+  );
+}
+
 ## A brief introduction to MemSwap
 
-MemSwap is a new “intents-based” swap protocol that leverages dutch auctions and propagates intents using the ethereum mempool, through a method called intentful transactions. The core protocol can be used as a fully decentralized swap aggregator. On top of the core, MemSwap introduces open-source and opt-in matchmakers that improve price execution, without relying on any individual central actor. The canonical MemSwap matchmaker provides better price execution by enabling an open market for searchers to fill one or many (partial) intents.
+MemSwap is a new “intents-based” swap aggregator protocol that leverages dutch auctions and propagates intents using the ethereum mempool through a method called [intentful transactions](/intentfultransactions).
+
+The core protocol can be used as a _fully decentralized swap aggregator_. On top of the core, MemSwap introduces open-source and opt-in [matchmakers](/matchmakers) that improve price execution, without relying on any individual central actor. The canonical MemSwap matchmaker provides better price execution by enabling an open market for searchers to fill one or many (partial) intents.
+
+<br />
+<br />
+
+<FAQBox title="Want to learn more?">
+
+- [Read the full protocol overview](/index)
+
+- Learn more about [intentful transactions](/intentfultransactions)
+
+- Become a [searcher](/searchers) for MemSwap
+
+- Run your own [matchmaker](/matchmakers)
+
+- [Integrate MemSwap into your app](/integrating)
+
+</FAQBox>
