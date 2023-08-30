@@ -1,15 +1,15 @@
 {
-  "MemSwapOverview": "MemSwap Protocol Overview",
+  "index": "MemSwap Protocol Overview",
   "-- UnderstandingMemSwap": {
     "type": "separator",
     "title": "MemSwap Protocol"
   },
-  "index": "What is MemSwap?",
+  "what-is-memswap": "What is MemSwap?",
 
-  "intentfultransactions": "Intentful Transactions (MemBook)",
-  "searchers": "Searchers",
+  "intentful-transactions": "Intentful Transactions (MemBook)",
+  "solvers": "Solvers",
   "matchmakers": "Matchmakers",
-  "integrating": "Integrating MemSwap",
+  "integrating-memswap": "Integrating MemSwap",
   "about": {
     "title": "About",
     "type": "page"
@@ -19,7 +19,7 @@
     "title": "Utils"
   },
 
-  "securitycontracts": "Security & Contracts",
+  "security-and-contracts": "Security & Contracts",
   "FAQ": "FAQ",
 
   "contact": {

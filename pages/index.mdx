@@ -1,27 +1,41 @@
-## **MemSwap - A Fully Decentralized Swap Aggergator**
+export function FAQBox({ title, children }) {
+  return (
+    <details
+      open
+      className="last-of-type:mb-0 rounded-lg bg-neutral-50 dark:bg-neutral-800 p-2 mt-4"
+    >
+      <summary>
+        <strong className="text-lg">{title}</strong>
+      </summary>
+      <div className="nx-p-2">{children}</div>
+    </details>
+  );
+}
 
-Recently several protocols have been developed based on the core premise of intents. Intents allows users to express desirable outcomes without the need to specify specific transactional routes, leading to a variety of UX benefits, including improved price execution for swappers due to decentralized aggregation and MEV capture (LINK). While Intents protocols promise significant user benefits, they unveil a new set of design challenges and tradeoffs.. For intent based swap protocols, there are a few key considerations. First, how might we mitigate MEV externalities through price improvements for swappers? And second, how might we do so without (significantly) sacrificing the core tenets of decentralization? MemSwap is an attempt to improve on current designs, by providing the best value to users, with limited additional costs.
+## A brief introduction to MemSwap
 
-From a user’s perspective Memswap, is functionally similar to Cowswap, 1inch Fusion or UniswapX:
+MemSwap is a decentralized swap protocol that provides best-in-class price execution, while minimizing centralization vectors. To acheive this the protocol delivers three key innovations:
 
-- User submits an “intent” (order) of what they want to swap (but not how)
-- Solvers compete to fill at the best possible rate
+- **The MemSwap Core Protocol** - a fully decentralized and permissionless swap protocol
+- **Matchmakers** - a network of trusted third parties who act in the best interest of swappers to improve price execution
+- **Private Swaps** - direct, private lines to solvers for improved execution for high signal trades
 
-But instead of a centralized API, Memswap leverages the Ethereum mempool to distribute orders.
+The MemSwap Core propagates intents using the ethereum mempool, through a method called [intentful transactions](/intentfultransactions).
+The core protocol can be used as a _fully decentralized_ swap aggregator. On top of the core, MemSwap introduces open-source and opt-in [matchmakers](/matchmakers) that improve price execution, without relying on any individual central actor. The canonical MemSwap matchmaker provides better price execution by enabling an open market for solvers to fill one or many (partial) intents. For high signal trades, swappers may opt for direct, private lines with single solvers.
 
-Swaps on Memswap are executed across two transactions:
+<br />
+<br />
 
-1. Swapper sends a regular transfer (ETH) or approval (ERC20/NFT), with their order appended in the calldata.
-2. Solvers watch the mempool and submit a swap tx leveraging the users’ assets.
+<FAQBox title="Want to learn more?">
 
-In the case that a matchmaker is nominated, searchers send proposed solutions to the matchmaker, who authorizes bundles prior to searchers submitting txs to builders.
+- [Read the protocol overview](/)
 
-MemSwap introduces two innovations resulting in both improved price execution and limited centralization:
+- Learn more about [intentful transactions](/intentfultransactions)
 
-**Intentful Transactions** - MemSwap introduces a novel mechanic for distributing intents using the Ethereum Mempool. Rather than submitting approval transactions and then intents to a private orderbook. MemSwap couples these actions. A user submits an approval transaction to the ethereum mempool with the associated intent appended in the transactions calldata. More details on intentful transactions can be found here.
+- Become a [solver](/solvers) for MemSwap
 
-Open Forwarders - MemSwap introduces opt-in and open-source Forwarders, which can be used if desired for improved price execution. Users or applications may choose to nominate a forwarder when submitting intents. Forwarders play the role of improving price execution by selecting the best solution to the batch of intents and submitting the associated txs to builders. Additionally, the canonical MemSwap forwarder is designed to improve price execution by opening the market for searchers and enabling price updating up to the point the block is mined. More details on Fowarders can be found here.
+- Learn about (and run your own) [matchmakers](/matchmakers)
 
-NO MATCHMAKER FLOW DIAGRAM
+- [Integrate MemSwap into your app](/integrating)
 
-MATCHMAKER FLOW DIAGRAM
+</FAQBox>

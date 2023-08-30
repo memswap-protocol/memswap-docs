@@ -1,0 +1,50 @@
+## **MemSwap - A decentralized swap protocol**
+
+MemSwap is a decentralized swap protocol that provides best-in-class price execution for a variety of different trading conditions. leverages the Ethereum Mempool for order distribution and introduces an open and permissionless solver market. The result is best-in-class price execution while maintaining an open and decentralized design.
+
+REALLY GOOD GRAPHIC
+
+### What are intents?
+
+Recently several protocols have been developed based on the core premise of intents. Intents allows users to express desirable outcomes without the need to specify specific transactional routes. This leads to a variety of UX benefits, including improved price execution for swappers due to decentralized aggregation and MEV capture.
+
+For example, rather than a swapper submitting a transaction to buy a specific token from a specific Uniswap pool, the swapper submits an intent (or order) describing the desired outcome - in this case, swapping token X and in return getting the maximum amount of Y possible. Rather than choosing the specific transactional route (i.e. through a specific Unswap pool), the intent can be fullfilled by solvers whose business it is to search for the most profitable routes possible. In an ideal world, the relationship between the swapper and the solver is that the solver can provide the swapper with the most profitable route for their swap (including any MEV) in exchange for a small fee for their service. In practice, while intents protocols promise significant user benefits, they unveil a new set of design challenges and tradeoffs.
+
+### Key Considerations for Intents Protocols
+
+For intent-based swap protocols, there are a few key considerations:
+
+1. How might we mitigate MEV externalities through price improvements for swappers?
+2. How might we do so without (significantly) sacrificing the core tenets of decentralization?
+
+MemSwap is an attempt to improve on current designs, by providing the best value to users, with limited additional costs.
+
+### MemSwap from the Swapper's Perspective
+
+From a user’s perspective Memswap, is functionally similar to Cowswap, 1inch Fusion or UniswapX:
+
+- User submits an “intent” (order) of what they want to swap (but not how)
+- Solvers compete to fill at the best possible rate
+
+Instead of a centralized API, Memswap leverages the Ethereum mempool to distribute orders.
+
+Swaps on Memswap are executed across two transactions:
+
+1. Swapper sends a regular transfer (ETH) or approval (ERC20/NFT), with their order appended in the calldata.
+2. Solvers watch the mempool and submit a swap tx leveraging the users’ assets.
+
+In the case that a matchmaker is nominated, solvers send proposed solutions to the matchmaker, who authorizes bundles prior to solvers submitting txs to builders.
+
+### MemSwap Key Innovations
+
+MemSwap introduces two innovations resulting in both improved price execution and limited centralization:
+
+[Intentful Transaction](/intentful-transactions) - MemSwap introduces a novel mechanic for distributing intents using the Ethereum Mempool. Rather than submitting approval transactions and then intents to a private orderbook. MemSwap couples these actions. A user submits an approval transaction to the ethereum mempool with the associated intent appended in the transactions calldata. More details on intentful transactions can be found here.
+
+[Matchmakers](/matchmakers) - MemSwap introduces opt-in and open-source matchmakers, which can be used if desired for improved price execution. Swappers or applications may choose to nominate a matchmaker when submitting intents. Matchmakers play the role of improving price execution by selecting the best solution to the batch of intents and authorizing solvers to submit txs to builders. Additionally, the canonical MemSwap forwarder is designed to improve price execution by opening the market for solvers and enabling price updating nearly up to the point the block is mined.
+
+Learn more about the key benefits of MemSwap [here](/keybenefits)
+
+NO MATCHMAKER FLOW DIAGRAM
+
+MATCHMAKER FLOW DIAGRAM
