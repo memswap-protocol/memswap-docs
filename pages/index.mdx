@@ -12,16 +12,76 @@ export function FAQBox({ title, children }) {
   );
 }
 
-## A brief introduction to MemSwap
+## MemSwap Overview
 
-MemSwap is a decentralized swap protocol that provides best-in-class price execution, while minimizing centralization vectors. To acheive this the protocol delivers three key innovations:
+MemSwap is a novel EVM market order protocol that leverages key innovations around intents and order flow auctions (OFAs) to give users best-in-class execution, while minimizing centralization.
 
-- **The MemSwap Core Protocol** - a fully decentralized and permissionless swap protocol
-- **Matchmakers** - a network of trusted third parties who act in the best interest of swappers to improve price execution
-- **Private Swaps** - direct, private lines to solvers for improved execution for high signal trades
+The protocol has three major modes:
 
-The MemSwap Core propagates intents using the ethereum mempool, through a method called [intentful transactions](/intentfultransactions).
-The core protocol can be used as a _fully decentralized_ swap aggregator. On top of the core, MemSwap introduces open-source and opt-in [matchmakers](/matchmakers) that improve price execution, without relying on any individual central actor. The canonical MemSwap matchmaker provides better price execution by enabling an open market for solvers to fill one or many (partial) intents. For high signal trades, swappers may opt for direct, private lines with single solvers.
+- **Decentralized** - The MemSwap Core is a fully decentralized and permissionless (implicit) OFA that leverages dutch auctions and the ethereum mempool for order distribution. It uses a novel order distribution mechanic called intentful transactions, and benefits from the widest solver network possible.
+
+- **Best Execution** - Users and applications may opt in to using a permissionless network of Matchmakers - trusted third parties that conducts OFAs for improved price execution. Applications may run their own matchmakers or choose to work with reputable third parties.
+
+- **Private** - High signal trades may be routed to solvers directly. Solvers the submit bundles using trusted private channels to ensure trades land onchain before leaking signal.
+
+MemSwap is designed to give swappers the ability to choose the appropriate conditions of their trade to get the best execution possible. Depending on the type of trade (and user), a user may value price, speed, or privacy differently. MemSwap provides a solution for each of these circumstances, while minimizing centralization vectors.
+
+### MemSwap UX
+
+From a user’s perspective Memswap is functionally similar to Cowswap, 1inch Fusion or UniswapX:
+
+- User submits an “intent” (order) of what they want to swap (but not how)
+- Solvers compete to fill at the best possible rate
+
+Instead of a centralized API, however, the Memswap Core leverages the Ethereum mempool to distribute orders. Swaps on Memswap are executed across two transactions that may be filled in a single block:
+
+1. Swapper sends a regular transfer (ETH) or approval (ERC20/NFT), with their order appended in the calldata.
+
+2. Solvers watch the mempool and submit a swap tx leveraging the users’ assets. In the case that a matchmaker is nominated, solvers send proposed solutions to a matchmaker who conducts an order flow auction (OFA) and authorizes bundles prior to solvers submitting transactions (txs) to builders.
+
+For private execution, users submit orders directly to solvers, who submit txs privately to builders.
+
+### MemSwap DX
+
+For applications…
+
+## MemSwap Key Innovations
+
+MemSwap introduces two innovations resulting in both improved price execution and limited centralization:
+
+[Intentful Transaction](/intentful-transactions) - MemSwap introduces a novel mechanic for distributing intents using the Ethereum Mempool. Rather than submitting approval transactions and then intents to a private orderbook. MemSwap couples these actions. A user submits an approval transaction to the ethereum mempool with the associated intent appended in the tx’s calldata. More details on intentful transactions can be found here.
+
+[Matchmakers](/matchmakers) - MemSwap introduces opt-in and open-source matchmakers, which can be used if desired for improved price execution. Swappers or applications may choose to nominate a matchmaker when submitting intents. Matchmakers play the role of improving price execution by selecting the best solution to the batch of intents and authorizing solvers to submit txs to builders. Matchmakers can be run by applications or trusted third parties and are designed to improve price execution by opening the market for solvers and enabling price updating nearly up to the point the block is mined. Learn more about matchmakers here.
+
+Learn more about the key benefits of MemSwap [here](/keybenefits)
+
+NO MATCHMAKER FLOW DIAGRAM
+
+MATCHMAKER FLOW DIAGRAM
+
+The key benefits of MemSwap are:
+
+Permissionless order distribution: The protocol uses the ethereum mempool for propagation of swap orders (intents), meaning no permissioned or opaque orderbook is required.
+
+Eth, ERC-20, and ERC-721 compatibility: Due to the structure of intentful transactions, MemSwap works with Eth pairs, as well as all ERC-20s and NFTs.
+
+No unlimited approvals (required): Unlimited approvals are a known security risk for users. Memswaps design avoids the need for these approvals. Where unlimited approvals are desired for improved UX, they are opt-in.
+
+Single Block Swaps: By coupling approvals and orders, swaps can be filled in a single block.
+
+Continuous price improvements: There is no need for exclusive filling rights based on off-chain auctions, so interblock price changes can be leveraged to improve swap prices.
+
+DoS resistance: MemSwap eliminates the DoS attack vector, a common concern for orders in open, permissionless mempools.
+
+No required centralized APIs: Centralized APIs present a censorship risk for developers, where affordances for centralized APIs improve UX, decentralized alternatives are important backstops.
+
+No private RFQ: Private RFQ requires trusted actors to fill proposed routes. Where centralization leads to improved UX, users may layer centralized or private solutions atop MemSwap, while remaining confident in a decentralized core.
+
+A fully decentralized alternative: The MemSwap Core can be used as a fully decentralized ‘intent-based’ swap aggregator.
+
+Improved price execution: MemSwap improves price execution for swappers through competition to provide the optimal route and internalize MEV. An open solving market enables all types of searchers to participate, improving price execution and democrazing the solving landscape.
+
+Open and flexible matchmaking: Applications and users can opt into matchmakers for improved price execution if desired. Matchmakers can be run openly, even by applications themselves.
 
 <br />
 <br />
@@ -29,6 +89,8 @@ The core protocol can be used as a _fully decentralized_ swap aggregator. On top
 <FAQBox title="Want to learn more?">
 
 - [Read the protocol overview](/)
+
+- Learn more about the key benefits of MemSwap [here](/keybenefits)
 
 - Learn more about [intentful transactions](/intentfultransactions)
 

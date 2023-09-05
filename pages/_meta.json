@@ -1,10 +1,17 @@
 {
-  "index": "MemSwap Protocol Overview",
   "-- UnderstandingMemSwap": {
     "type": "separator",
     "title": "MemSwap Protocol"
   },
+  "index": "Protocol Overview",
+  "why-memswap": "Why MemSwap?",
   "what-is-memswap": "What is MemSwap?",
+  "memswap-fees": "Protocol Fees",
+
+  "-- Technical Docs": {
+    "type": "separator",
+    "title": "Technical Docs"
+  },
 
   "intentful-transactions": "Intentful Transactions (MemBook)",
   "solvers": "Solvers",

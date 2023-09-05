@@ -1,0 +1,23 @@
+The key benefits of MemSwap are:
+
+Permissionless order distribution: The protocol uses the ethereum mempool for propagation of swap orders (intents), meaning no permissioned or opaque orderbook is required.
+
+Eth, ERC-20, and ERC-721 compatibility: Due to the structure of intentful transactions, MemSwap works with Eth pairs, as well as all ERC-20s and NFTs.
+
+No unlimited approvals (required): Unlimited approvals are a known security risk for users. Memswaps design avoids the need for these approvals. Where unlimited approvals are desired for improved UX, they are opt-in.
+
+Single Block Swaps: By coupling approvals and orders, swaps can be filled in a single block.
+
+Continuous price improvements: There is no need for exclusive filling rights based on off-chain auctions, so interblock price changes can be leveraged to improve swap prices.
+
+DoS resistance: MemSwap eliminates the DoS attack vector, a common concern for orders in open, permissionless mempools.
+
+No required centralized APIs: Centralized APIs present a censorship risk for developers, where affordances for centralized APIs improve UX, decentralized alternatives are important backstops.
+
+No private RFQ: Private RFQ requires trusted actors to fill proposed routes. Where centralization leads to improved UX, users may layer centralized or private solutions atop MemSwap, while remaining confident in a decentralized core.
+
+A fully decentralized alternative: The MemSwap Core can be used as a fully decentralized ‘intent-based’ swap aggregator.
+
+Improved price execution: MemSwap improves price execution for swappers through competition to provide the optimal route and internalize MEV. An open solving market enables all types of searchers to participate, improving price execution and democrazing the solving landscape.
+
+Open and flexible matchmaking: Applications and users can opt into matchmakers for improved price execution if desired. Matchmakers can be run openly, even by applications themselves.
