@@ -1,23 +1,13 @@
-The key benefits of MemSwap are:
+## Large Signal Trades
 
-Permissionless order distribution: The protocol uses the ethereum mempool for propagation of swap orders (intents), meaning no permissioned or opaque orderbook is required.
+One scenario where public orders are problematic is with large signal trades. When a trade with sufficient power to move the market hits a public pool, it will likely be frontrun. This is less concerning for transactional trades, but will happen even with intents in public pools. For small signal trades, intents (orders without routes) provide some cover, since MEV bots do not know which route you will take, they have less assurance about how to extract value. Sandwiching becomes harder, for example. While some signal can be internalized by OFAs, for large signals, MEV bots may still act out of band to capture value before the user can land her transaction onchain.
 
-Eth, ERC-20, and ERC-721 compatibility: Due to the structure of intentful transactions, MemSwap works with Eth pairs, as well as all ERC-20s and NFTs.
+With MemSwap we provide a specific mode for high signal trades to combat this problem. Discussed in detail here.
 
-No unlimited approvals (required): Unlimited approvals are a known security risk for users. Memswaps design avoids the need for these approvals. Where unlimited approvals are desired for improved UX, they are opt-in.
+## Private Orders
 
-Single Block Swaps: By coupling approvals and orders, swaps can be filled in a single block.
+As discussed above, for large signal trades public orders can lead to loss of value. And just as public orders have their time and place, so do private orders. When a trade is going to move markets significantly, it is preferred for a swapper to route their order to block builders privately, preventing any signal from leaking to the public market.
 
-Continuous price improvements: There is no need for exclusive filling rights based on off-chain auctions, so interblock price changes can be leveraged to improve swap prices.
+For this exact use case, MemSwap has a Private mode, which works by routing orders directly to a trusted solver (mediated by a matchmaker). This solver can then privately submit the transaction bundle to a builder using trusted private channels like private RPCs.
 
-DoS resistance: MemSwap eliminates the DoS attack vector, a common concern for orders in open, permissionless mempools.
-
-No required centralized APIs: Centralized APIs present a censorship risk for developers, where affordances for centralized APIs improve UX, decentralized alternatives are important backstops.
-
-No private RFQ: Private RFQ requires trusted actors to fill proposed routes. Where centralization leads to improved UX, users may layer centralized or private solutions atop MemSwap, while remaining confident in a decentralized core.
-
-A fully decentralized alternative: The MemSwap Core can be used as a fully decentralized ‘intent-based’ swap aggregator.
-
-Improved price execution: MemSwap improves price execution for swappers through competition to provide the optimal route and internalize MEV. An open solving market enables all types of searchers to participate, improving price execution and democrazing the solving landscape.
-
-Open and flexible matchmaking: Applications and users can opt into matchmakers for improved price execution if desired. Matchmakers can be run openly, even by applications themselves.
+Learn more about the technical details of Private MemSwap Orders here.
