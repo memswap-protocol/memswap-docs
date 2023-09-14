@@ -1,0 +1,15 @@
+## Private orders
+
+### When Private Orders?
+
+One scenario where public orders are problematic is with large signal trades. When a trade with sufficient power to move the market hits a public pool, it will likely be frontrun. This is less concerning for transactional trades, but will happen even with intents in public pools. For small signal trades, intents (orders without routes) provide some cover, since MEV bots do not know which route you will take, they have less assurance about how to extract value. Sandwiching becomes harder, for example. While some signal can be internalized by OFAs, for large signals, MEV bots may still act out of band to capture value before the user can land her transaction onchain.
+
+With MemSwap we provide a specific mode for high signal trades to combat this problem. Discussed in detail here.
+
+### How Private Orders?
+
+As discussed above, for large signal trades public orders can lead to loss of value. And just as public orders have their time and place, so do private orders. When a trade is going to move markets significantly, it is preferred for a swapper to route their order to block builders privately, preventing any signal from leaking to the public market.
+
+For this exact use case, MemSwap has a Private mode, which works by routing orders directly to a trusted solver (mediated by a matchmaker). This solver can then privately submit the transaction bundle to a builder using trusted private channels like private RPCs.
+
+Learn more about the technical details of Private MemSwap Orders here.

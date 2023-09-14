@@ -1,4 +1,6 @@
 {
   "memswap-core": "The MemSwap Core",
-  "understanding-matchmakers": "Understanding Matchmakers"
+  "order-flow-auctions": "Optimizing Prices through OFAs (using Matchmkaers)",
+  "private-orders": "Privacy and High Signal Swaps",
+  "nft-composibility": "NFT Composibility"
 }

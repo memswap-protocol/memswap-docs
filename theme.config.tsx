@@ -69,6 +69,7 @@ const config: DocsThemeConfig = {
     link: "https://github.com/memswap-eth",
   },
   docsRepositoryBase: "https://github.com/memswap-eth/memswap-docs",
+  sidebar: { defaultMenuCollapseLevel: 1, autoCollapse: true },
   // footer: {
   //   text: "MemSwap Docs",
   // },

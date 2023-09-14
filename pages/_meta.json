@@ -1,34 +1,44 @@
 {
-  "-- UnderstandingMemSwap": {
+  "-- Introduction": {
     "type": "separator",
-    "title": "MemSwap Protocol"
+    "title": "Introduction"
   },
   "index": "Protocol Overview",
-  "why-memswap": "Why MemSwap?",
+  "why-intents": "Why Intents?",
   "what-is-memswap": "What is MemSwap?",
-  "memswap-fees": "Protocol Fees",
+  "development-progress": "Development Progress",
   "decentralizing-memswap": "Decentralizing MemSwap",
 
   "-- Technical Docs": {
     "type": "separator",
-    "title": "Technical Docs"
+    "title": "Core Technical Components"
   },
 
-  "intentful-transactions": "Intentful Transactions (MemBook)",
+  "protocol": "Protocol",
+  "order-flow": "Order Flow",
+  "matchmakers": "Matchmakers",
   "solvers": "Solvers",
   "matchmakers": "Matchmakers",
-  "integrating-memswap": "Integrating MemSwap",
+  "originators": "Originators (Apps/Wallets)",
   "about": {
     "title": "About",
     "type": "page"
   },
-  "-- Utils": {
+  "-- Tools": {
     "type": "separator",
-    "title": "Utils"
+    "title": "Tools"
   },
-
+  "interface": "Interface",
+  "api": "API",
+  "github_link": {
+    "title": "Github",
+    "href": "https://github.com/shuding/nextra"
+  },
+  "discord_link": {
+    "title": "Discord",
+    "href": "https://github.com/shuding/nextra"
+  },
   "security-contracts": "Security & Contracts",
-  "FAQ": "FAQ",
 
   "contact": {
     "title": "Contact ↗",

@@ -1,4 +1,7 @@
 {
-  "solving-with-a-matchmaker": "Solving with a Matchmaker",
-  "running-a-matchmaker": "Running a Matchmaker"
+  "technical-matchmaker-overview": "Technical Matchmaker Overview",
+  "last-block-auction": "Last Block Auction",
+  "implicit-builder-auction": "Implicit Builder Auction",
+  "expliicit-builder-auction": "Explicit Builder Auction",
+  "running-a-matchmaker": "Guide to Running a Matchmaker"
 }
