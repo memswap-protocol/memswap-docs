@@ -4,7 +4,7 @@ One of the goals of Memswap is to maximize value returned to users in swaps by c
 
 This represents a tantalizing opportunity to conduct a “perfect” auction, ranking solutions exactly based on the value they return to users in the context of the next block. In order to do this, one option would be for block builders to opt in to Memswap (or auction) specific infrastructure. This is not unprecedented, recently many block builders adopted [MEV-share](https://docs.flashbots.net/flashbots-protect/mev-share), a protocol for returning transaction MEV to users. There are a variety of reasons that an explicit auction would be preferred, such as the ability to consider different auction mechanics, incentive structures, and system architectures. However, it may be challenging and time intensive to build such a system. In the meantime, Memswap proposes leveraging an _implicit builder auction_.
 
-##### Implicit Builder Auction
+### Implicit Builder Auction
 
 V2 of Memswap proposed an **_Implicit Builder Auction_**, that leverages builder tips to incentivize builders to conduct the OFA. The core idea is that _dynamic tips_ can be used to incentivize the builder to conduct an order flow auction _given their current incentive structure_. Since block builder already optimize for most valuable block, by tipping builders in accordance with how much user value is generated, they will implicitly conduct an order flow auction.
 

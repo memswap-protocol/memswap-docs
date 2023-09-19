@@ -2,7 +2,7 @@
 
 Memswap uses Order Flow Auctions (OFAS) to capture surplus for users above the base price of their order, improve execution execution and speed. Before we discuss matchmakers, let's touch on how auctions can be used to capture surplus.
 
-##### Capturing Surplus
+### Capturing Surplus
 
 The Memswap protocol auction uses a dutch auction order format to improve prices for swappers. This works because as the price decays, solvers compete to fill the order given the current block’s order price. While this leads to substantive [UX improvements](/order-flow-auctions/protocol-auction) over traditional decentralized swaps, there are challenges still in achieving **best execution**. In practice, any excess value above a swapper’s minimum current block auction price will be captured by other users in the MEV supply chain (likely validators), and setting auction parameters to maximize value can lead to long time delays in getting orders filled.
 
@@ -18,7 +18,7 @@ This actor can then conduct an explicit OFA to determine which solution is best 
 
 ![](../../public/ma-mev-2.png)
 
-##### Auction Design
+### Auction Design
 
 The idea of a monopolist isn’t new. UniswapX, 1inch Fusion, the CoWSwap driver, and the MEV-share Node all use a model where monopolists are used to improve execution. We call this monopolistic actor a _Matchmaker_. Given the current state of transaction building and execution, trusted actors must be relied upon for matchmaking. In the future, the role of the matchmaker may be decentralized.
 
@@ -32,7 +32,7 @@ Permissioned designs like UniSwapX request-for-quote (RFQ) and CoWSwap rely on a
 
 Alternatively, auctions can be designed to be permissionless using transaction simulation. The key benefits of permissionless auctions is that they allow that largest possible network of solvers to participate, increasing the likelihood of a solver finding an optimal route for the user. The problems with solvers using signal to extract user value persists, but are better solved by [ private orders](/privacy). While challenges with simulation exist, they can be overcome, especially when builders can be leveraged to determine transaction validity while building blocks.
 
-##### Current Matchmaker Design
+### Current Matchmaker Design
 
 Memswap is designed to allow any type of matchmaker to be built. However, the reference [Reservoir matchmaker](/matchmakers/matchmaker-v1) uses simulation to enable a permissionless solver network in order to access the largest number of solvers possible. Currently, the matchmaker conducts an OFA on behalf of users (Matchmaker Auction), though V2 of the matchmaker will facilitate an implicit Builder Auction.
 
@@ -43,7 +43,7 @@ The current design of Memswap uses a **_Last Block Auction_** design. This model
 - Matchmaker conducts an order flow auction (OFA) on valid solutions
 - The winning fillers receive exclusive rights to fill these orders in the next block
 
-##### Challenges with Last Block Auctions
+### Challenges with Last Block Auctions
 
 One significant challenge of last block auctions is that the best outcome cannot be chosen by the matchmaker deterministically. Consider for instance a case where two solutions are provided for Alice, like the following:
 

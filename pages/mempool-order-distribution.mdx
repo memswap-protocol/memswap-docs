@@ -6,7 +6,7 @@ One might ask, _why would you want to distribute intents publicly if private opt
 
 To date, the Ethereum Mempool has not been considered as a potential intent pool, do its perceived lack of compatibility with gasless intents, challenges with DDOS, and concerns around MEV extraction. Memswap overcomes these challenges with novel Ethereum mempool orderbook.
 
-## Mempool Orderbook
+## Using the Mempool
 
 Memswap uses an orderbook that leverages the Ethereum Mempool using a novel mechanic for order distribution called [Intentful Transactions](/intentful-transactions). An intentful transaction is **a transaction that embeds a user's intent**. The order is hashed and appended to the transactions calldata, allowing solvers to parse approval transactions and retrieve orders. In the case of Memswap the transactions are users’ token approvals. Orders are propogated using Mempool infrstructure alongside approval transactions, leading to cheap and rapid order propogation, including the ability to approve and fill and trade in a single block.
 
@@ -18,4 +18,4 @@ Leveraging MemBook means that Memswap can be used as a **fully decentralized mar
 
 → Learn more about [Memswap Orders](/protocol-features)
 
-As we discuss in [Private Market Orders](/privacy), not all intents should be propogated publicly, and MemBook is undesirable for orders with high signal. Memswap provides alternative solutions where privacy is preferred.
+As we discuss in [High Signal Privacy](/privacy), not all intents should be propogated publicly, and MemBook is undesirable for orders with high signal. Memswap provides alternative solutions where privacy is preferred.

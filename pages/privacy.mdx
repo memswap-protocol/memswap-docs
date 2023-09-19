@@ -7,7 +7,7 @@ MemSwap provides two solutions for privacy preservation:
 1. **Single Solver Delegation**: Private submission of orders directly to a single, trusted solver
 2. **Concealed Orders**: Programmable privacy (à la [MEV-share](https://collective.flashbots.net/t/mev-share-programmably-private-orderflow-to-share-mev-with-users/1264)) to limit solvers' ability to frontrun
 
-##### Single Solver Delegation
+### Single Solver Delegation
 
 Memswap allows for single solver delegation, a mechanic that lets a single reputable solver provide the best route to a user and submit the bundle to trusted builders privately.
 
@@ -21,7 +21,7 @@ Single solver delegation works like this:
 
 Private orders of this nature rely on trusted relationships with solvers. But while is seems like more trust may be needed to interact with just one solver, in many ways true privacy requires less trust. When signal orders are submitted to permissioned or public pools (in fact any “pool” with more than one solver), it is challenging to attribute front running, even when solvers may be pushed for griefing. Identifying that some amount of MEV has occurred once the block has landed isn’t hard, it’s deciding who was responsible. Since any solver could have been the one to leak information, it is impossible to remove privileges from or slash offending solvers. True privacy, as in, directing orders to a single solver, makes attribution simple and incentivizes solvers to cooperate in order to get future order flow.
 
-##### Concealed Orders
+### Concealed Orders
 
 Concealed orders follow a similar mechanic to [“programmable privacy” in MEV-share.](https://collective.flashbots.net/t/mev-share-programmably-private-orderflow-to-share-mev-with-users/1264) In order to limit signal leakage, key aspects of the order are concealed so the information cannot be used out of band. In particular, users might wish to hide the maker address and the quantity of tokens to be swapped.
 
