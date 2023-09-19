@@ -1,7 +1,7 @@
 {
   "name": "memswap-docs",
   "version": "0.0.1",
-  "description": "Documentation for MemSwap.",
+  "description": "Documentation for Memswap.",
   "scripts": {
     "dev": "next dev",
     "build": "next build",
