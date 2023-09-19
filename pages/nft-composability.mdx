@@ -1,14 +1,23 @@
-## NFT Composability (& general UX improvements)
+## NFT Composability
 
-Intents provide a significant opportunity to improve retail trading UX above and beyond price improvements. Here we describe some of the exciting improvements that are enabled by Memswap:
+The NFT market has evolved to feature Aggregators,  that unlock a number of different advanced trading features:
 
-- **Minimize failed transactions** - orders may be filled by many routes over many blocks improving success rates
-- **Fast tx propagation** - Memswap allows orders filled (with approval) in a single block. Futhermore, matchmakers can leverage direct lines to solvers and builder increasing transaction propagation rates.
-- **Buy with any currency** - Being able to purchase NFTs in any currency is an important UX improvement for users. While this is possible in some circumstances today, intents make is easier to buy NFTs in any currency and get a good rate when doing so.
-- **Crosschain purchasing** - Memswap can be extented to allow for cross-chain purchasing both for ERC-20s and NFTs.
-- **Fee normalization** - For NFTs, normalizing fees, and in particular royalties, is important for many users. Memswap enables fee normalization for all protocols, not just compliant ones.
-- **Improved NFT minting dynamics** - Intents may be used to capture more value for creators and marketplaces during hotly contested NFT mints.
-- **Buying NFTs with slippage** - During time of high volume, NFT purchasing can have high failure rates due to the individual nature of the tokens. Memswap enables NFT users to buy with slippage, increasing their success rate in the case of high volumes.
-- **Gas sponsorship** - Gas costs (which are internalized by solvers) may be sponsored with intents.
-- **NFT CoWS** - There are a variety of NFT market Coincidence of Wants (CoWs) that are enabled by Memswap, including ring trades, complex swapping, and more.
-- **Originator fees** - Memswap is designed to give originators (swapping applications) the best possible options to capture fees, including flat percentage fees or a percentage of surplus.
+* **Cross-Marketplace Sweeping** - Buy the cheapest items in a collection, no matter which marketplace they are listed on
+* **Purchase Currency** - Buy NFTs with any currency, not just what they are listed in
+* **Slippage Tolerance** - Avoid failed transactions by getting the next best listing if cheapest no longer available
+* **Gasless** - Trade without ETH for gas, using ERC20 tokens or sponsorship
+* **Royalty Normalization** - Add royalties to orders that didn't respect creator configuration
+* **Taker Fees** - Allow apps to collect fees on top for driving trading
+
+Today, all of these features require the use of a "router" contract, that adds functionality on top of the base marketplace contracts. This works works fine when liquidity is open and permissionless, but increasingly NFT liquidity comes with restrictions that threaten composability:
+
+* Marketplaces like Blur that prevent all smart contracts from interacting
+* NFT standards like ERC-721C that limit which only allow whitelisted marketplace protocols to interact
+
+Memswap is able to retain composability, even with these restrictions, by using bundles of txs (sent from a solver's EOA) instead of router smart contracts. Memswap is able to validate that the conditions of a swap are satisfied, without actually performing the swap itself, or requiring that it happens in a single atomic transaction. For example, let’s say I want to use USDC to buy a restricted NFT listed in ETH. This can be solved across multiple txs:
+
+1. Buy the NFT with ETH (paying full royalties)
+2. Deliver NFT to user
+3. Prove order has been satisified, in order to pull users’ USDC and swap it back into ETH
+
+While this increases the complexity, the burden mostly falls on professional solvers, and can be abstracted entirely from end-users.
