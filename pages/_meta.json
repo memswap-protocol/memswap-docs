@@ -5,9 +5,9 @@
   },
   "index": "Introduction",
   "intent-based-swaps": "Intent-based Swaps",
-  "onchain-order-distribution": "Onchain Order Distribution (MemBook)",
+  "mempool-order-distribution": "Mempool Order Distribution",
   "order-flow-auctions": "Order Flow Auctions",
-  "privacy": "Private Market Orders",
+  "privacy": "High Signal Privacy",
   "nft-composability": "NFT Composability",
 
   "-- Technical Docs": {
