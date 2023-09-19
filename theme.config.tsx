@@ -1,6 +1,8 @@
 import React from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
 
+const github = "https://github.com/memswap-eth/memswap-docs";
+
 const config: DocsThemeConfig = {
   logo: (
     <svg
@@ -68,11 +70,8 @@ const config: DocsThemeConfig = {
   project: {
     link: "https://github.com/memswap-eth",
   },
-  docsRepositoryBase: "https://github.com/memswap-eth/memswap-docs",
+  docsRepositoryBase: `${github}/tree/main/`,
   sidebar: { defaultMenuCollapseLevel: 1, autoCollapse: true },
-  // footer: {
-  //   text: "MemSwap Docs",
-  // },
   footer: {
     text() {
       return (
