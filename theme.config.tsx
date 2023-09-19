@@ -2,7 +2,7 @@ import React from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
 import { useRouter } from "next/router";
 
-const github = "https://github.com/memswap-eth/memswap-docs";
+const github = "https://github.com/memswap-protocol/memswap-docs";
 
 const config: DocsThemeConfig = {
   useNextSeoProps() {
@@ -77,7 +77,7 @@ const config: DocsThemeConfig = {
   ),
   primaryHue: 328,
   project: {
-    link: "https://github.com/memswap-eth",
+    link: "https://github.com/memswap-protocol",
   },
   docsRepositoryBase: `${github}/tree/main/`,
   sidebar: { defaultMenuCollapseLevel: 1, autoCollapse: true },

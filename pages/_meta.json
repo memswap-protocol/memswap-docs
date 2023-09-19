@@ -21,10 +21,6 @@
   "solvers": "Solvers",
   "matchmakers": "Matchmakers",
   "originators": "Originators (Apps/Wallets)",
-  "about": {
-    "title": "About",
-    "type": "page"
-  },
   "-- Tools": {
     "type": "separator",
     "title": "Tools"
@@ -33,7 +29,7 @@
   "interface": "Interface",
   "github_link": {
     "title": "Github",
-    "href": "https://github.com/memswap-eth"
+    "href": "https://github.com/memswap-protocol"
   },
   "discord_link": {
     "title": "Discord",
@@ -43,7 +39,7 @@
   "contact": {
     "title": "Contact ↗",
     "type": "page",
-    "href": "https://twitter.com/reservoir0x",
+    "href": "https://twitter.com/MemswapProtocol",
     "newWindow": true
   }
 }

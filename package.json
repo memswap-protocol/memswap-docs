@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/memswap-eth/memswap-docs.git"
+    "url": "git+https://github.com/memswap-protocol/memswap-docs.git"
   },
   "author": "Memswap",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/memswap-eth/memswap-docs/issues"
+    "url": "https://github.com/memswap-protocol/memswap-docs/issues"
   },
-  "homepage": "https://github.com/memswap-eth",
+  "homepage": "https://github.com/memswap-protocol",
   "dependencies": {
     "next": "^13.0.6",
     "nextra": "latest",
