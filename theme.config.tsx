@@ -10,6 +10,7 @@ const config: DocsThemeConfig = {
     if (asPath !== "/") {
       return {
         titleTemplate: "%s",
+        openGraph: { images: [{ url: "https://docs.memswap.xyz/og.png" }] },
       };
     }
   },
