@@ -6,10 +6,88 @@
 
 The default mode for [MemSwap.xyz](http://MemSwap.xyz) is "Best". It leverages the Reservoir matchmaker (reservoir-matchmaker.eth) to conduct a matchmaker OFA. This mode is designed to give users the best prices in the shortest amount of time.
 
+<u>Speed</u>: Fast
+
+✅ Matchmaker can find best price with a single-block auction
+
+<u>Quality</u>: High
+
+✅ Solvers access aggregated liquidity from all DEXs & Market Makers
+
+✅ Open to anyone to find the best solution, resulting in better prices
+
+<u>Trust</u>: Low
+
+⚠️ Relies Matchmaker reputation to choose best solution
+
+✅ Order can’t be filled below chosen min price / slippage
+
+<u>MEV</u>: Low
+
+✅ Open-ended “intent” is harder to sandwich attack than a regular tx
+
+✅ Solvers submit swap tx via private relay (e.g. Flashbots)
+
+✅ Matchmaker ensures that surplus (above min price) goes to swapper
+
+⚠️ Swap parameters are public. Can be frontrun if order is high signal
+
 **Trustless**
 
 Users may opt into the “trustless” mode, which uses **no** third parties. The mode uses an dutch auction orders and propogates the orders using the users token approval transaction through the MemPool. Once solvers can fill the order, they will bundle the order and submit it to builders.
 
+<u>Speed</u>: Slow
+
+⚠️ Need to conduct auction over many blocks to get good price
+
+<u>Quality</u>: High
+
+✅Solvers access aggregated liquidity from all DEXs & Market Makers
+
+✅Open to anyone to find the best solution, resulting in better prices
+
+<u>Trust</u>: None
+
+✅No privileged or trusted 3rd parties required
+
+<u>MEV</u>: Medium
+
+✅Open-ended “intent” is harder to sandwich attack than regular tx
+
+✅Solvers submit swap tx via private relay (e.g. Flashbots)
+
+⚠️ Any surplus above the dutch auction captured by Solvers / Validators
+
+⚠️ Swap parameters are public. Can be frontrun if order is high signal
+
 **Private**
 
 The [MemSwap.xyz](http://MemSwap.xyz) private mode privately submits orders to the Reservoir matchmaker and reference solver, before using private RPCs to submit transaction bundles to builders.
+
+<u>Speed</u> = Fast
+
+✅Solver can usually get tx mined in the same block they get order
+
+<u>Quality</u>: Medium
+
+✅Solvers access aggregated liquidity from all DEXs & Market Makers
+
+⚠️ Solutions only sourced from a single solver
+
+<u>Trust</u> = Medium
+
+⚠️ Relies on Matchmaker to choose a good Solver
+
+⚠️ Relies on single Solver reputation. No auction to force good behavior
+
+✅Order can’t be filled below chosen min price / slippage
+
+<u>MEV</u>: Low
+
+✅Open-ended “intent” is harder to sandwich attack than regular tx
+
+✅Solvers submit swap tx via private relay (e.g. Flashbots)
+
+✅Limited access to order reduces chance of front-running
+
+⚠️ Lack of competition means Solver may discretely extract MEV or simply not have the best price
