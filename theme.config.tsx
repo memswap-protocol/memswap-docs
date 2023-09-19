@@ -6,12 +6,10 @@ const github = "https://github.com/memswap-protocol/memswap-docs";
 
 const config: DocsThemeConfig = {
   useNextSeoProps() {
-    const { asPath } = useRouter();
-    if (asPath !== "/") {
-      return {
-        titleTemplate: "%s",
-      };
-    }
+    return {
+      titleTemplate: "%s",
+      openGraph: { images: [{ url: "https://docs.memswap.xyz/og.png" }] },
+    };
   },
   logo: (
     <svg
