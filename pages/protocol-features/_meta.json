@@ -8,6 +8,5 @@
   "order-types": "Order Types",
   "order-format": "Order Format",
   "concealed-orders": "Concealed Orders",
-  "memeth": "Eth Support (memEth)",
-  "permissioned-solving": "Permissioned Solving"
+  "memeth": "Eth Support (memEth)"
 }
