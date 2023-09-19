@@ -1,21 +1,21 @@
 ## Matchmaker V1
 
-The current V1 matchmaker for MemSwap is hosted by Reservoir (reservoir-matchmaker.eth). The matchmaker has two modes - a _public last block auction_ and _single solver submission._
+The current V1 matchmaker for Memswap is hosted by Reservoir (reservoir-matchmaker.eth). The matchmaker has two modes - a _public last block auction_ and _single solver submission._
 
 ##### Last Block Public Auction
 
-The matchmaker conducts a Last Block Auction in order to improve price execution for any orders that nominate it. Here we describe the implementation details of this matchmaker.
+The matchmaker conducts a Last Block Auction in order to improve price execution for any orders that nominate it. You can learn more about the matchmaker auction [here](/order-flow-auctions/matchmaker-auction). Here we describe the implementation details of the V1 Matchmaker:
 
 - The matchmaker is nominated by users or applications who set the matchmaker as the exclusive authorizer in the order.
 - Applications submit orders to the Mempool using intentful transactions. Solvers listen to the Mempool for order discovery.
 - For the first 9 seconds of the block, the matchmaker accepts solutions to users’ intents, and simulates orders against the last block
   - Solutions must solve a single route (no order COWs)
-- Matchmaker conducts an order flow auction, accepting any orders that are within a fixed percentage of the top bid
+- The matchmaker conducts an order flow auction, accepting any orders that are within a fixed percentage of the top bid
 - Matchmaker releases signatures to solvers authorizing submission
-- Solvers must respond with a signed transaction
-- Solvers are then free to submit bundles builders
+- Solvers respond with a signed transaction, signaling intent to submit
+- Solvers are then free to submit bundles to builders
 
-Learn more about last block auctions and check out the code for the open-source Reservoir matchmaker
+Learn more about [last block auctions](/oder-flow-auctions/matchmaker-auction) and check out [the code](https://github.com/memswap-protocol/memswap/tree/main/src/matchmaker) for the open-source Reservoir matchmaker
 
 ##### Single Solver Submission
 

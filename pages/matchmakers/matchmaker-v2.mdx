@@ -1,6 +1,6 @@
 ## Matchmaker V2
 
-V2 of the Reservoir matchmaker for MemSwap is currently under development and should be released shortly. The V2 matchmaker has two additions compared to V1 - a _implicit builder auction_ and _programmable privacy._
+V2 of the Reservoir matchmaker is currently under development and should be released shortly. The V2 matchmaker has two additions compared to V1 - an _implicit builder auction_ and _programmable privacy._
 
 ##### Matchmaker-mediated Implicit Builder Auction
 
@@ -13,17 +13,20 @@ The V2 matchmaker conducts an Implicit Builder Auction in order to improve price
   - A _dynamic tip_ that uses coinbase.transfer() to increase the tip quantity based on the total value to the user
 - Matchmaker releases signatures to solves that conform authorizing submission
 - Bundles sent to builders are then optmized for inclusion in the block, resulting in an implicit auction
+
   - Builders choose the bundles that maximize the value of the block
   - Since tips are dynamically set to be greater for bundles that improve user outcomes, builder prioritize bundles that increase user value while simulating against the current block being built.
 
-Learn more about [builder auctions](/order-flow-auctions/builder-auctions)
+  Learn more about [Builder Auctions](/order-flow-auctions/builder-auctions).
 
 ##### Programmable Privacy
 
-In order to limit signal leakage, key aspects of orders can be concealed so the information cannot be used out of band. In particular, users might wish to hide the order maker address, and the quantity of tokens to be swapped.
+In order to limit signal leakage, key aspects of orders can be concealed so the information cannot be used out of band. In particular, users might wish to hide the order maker address. While hiding token quanitities may also seem desirable, there is a better alternative: the matchmaker creates false orders so solvers can't be sure if an order is legitimate, which increases the risk of frontrunning.
 
 - Users or applications opt into to concealed orders
 - Orders are routed to matchmakers who reveal hints to solvers
 - Solvers use the hints to propose viable solutions
 - Matchmakers choose the best solutions and construct tx bundles
 - Matchmakers submit tx bundles to builders
+
+Learn more about [Private Market Orders](/privacy)

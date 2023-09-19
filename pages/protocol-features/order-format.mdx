@@ -1,0 +1,30 @@
+## Onchain Orderbook
+
+While not a hard requirement, Memswap is designed to work well with a fully onchain orderbook that uses the Ethereum mempool for intent distribution, instead of an offchain API.
+
+Learn more about [Intentful Transactions](/intentful-transactions)
+
+The Memswap order format was designed to support and efficient order format for onchain distribution in order to minimize gas while posting orders.
+
+```ts
+Intent = {
+  isBuy,
+  buyToken,
+  sellToken,
+  maker,
+  solver,
+  source,
+  feeBps,
+  surplusBps,
+  startTime,
+  endTime,
+  isPartiallyFillable,
+  isSmartOrder,
+  isIncentivized,
+  amount,
+  endAmount,
+  startAmountBps,
+  expectedAmountBps,
+  signature,
+};
+```
