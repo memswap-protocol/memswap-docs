@@ -1,16 +1,18 @@
 ## Builder Auctions
 
-Block builders are in a unique position. They are the only entities that can simulate solutions in the context of the next block, even having the ability to adjust the positioning of a solution with a block. This represents a tantalizing opportunity to conduct a “perfect” auction, ranking solutions exactly based on the value they return to users in the context of the next block.
+One of the goals of Memswap is to maximize value returned to users in swaps by considering multiple solutions and choosing the best one. When then protocol runs this process, it's limited to a [coarse dutch auction](/order-flow-auctions/protoco-auction), which leaks some value and costs the user time. When a neutral 3rd party (matchmaker) runs this process, they are limited to simulating solutions [against the previous block](/order-flow-auctions/matchmaker-auctions), which may not represent the true value due to state changes like AMM price movements. The only actor who can truly evaluate solutions exactly as they will appear in the next block are the **Block Builders** themselves.
 
-V2 of Memswap proposed an **_Implicit Builder Auction_**, that leverages builder tips to incentivize builders to conduct the OFA.
+This represents a tantalizing opportunity to conduct a “perfect” auction, ranking solutions exactly based on the value they return to users in the context of the next block. In order to do this, one option would be for block builders to opt in to Memswap (or auction) specific infrastructure. This is not unprecedented, recently many block builders adopted [MEV-share](https://docs.flashbots.net/flashbots-protect/mev-share), a protocol for returning transaction MEV to users. There are a variety of reasons that an explicit auction would be preferred, such as the ability to consider different auction mechanics, incentive structures, and system architectures. However, it may be challenging and time intensive to build such a system. In the meantime, Memswap proposes leveraging an _implicit builder auction_.
 
 ##### Implicit Builder Auction
+
+V2 of Memswap proposed an **_Implicit Builder Auction_**, that leverages builder tips to incentivize builders to conduct the OFA. The core idea is that _dynamic tips_ can be used to incentivize the builder to conduct an order flow auction _given their current incentive structure_. Since block builder already optimize for most valuable block, by tipping builders in accordance with how much user value is generated, they will implicitly conduct an order flow auction.
 
 The implicit builder auction works as follows:
 
 - Allows any solver to submit proposed solutions
 - Matchmaker forces solutions to set a tip relative to user value received by requiring a 1 gwei priority fee and a _dynamic tip_ using coinbase.transfer()
-- The Matchmaker filters solutions that conform to predetermined standards and sends order flow to trusted builders
+- The Matchmaker filters solutions that conform to these predetermined standards and sends order flow to trusted builders
 - The builder, maximizing value of the block, performs an implicit OFA against the _current block being built_
 
-One alternative to an implicit builder auction would be for builders to conduct auctions explicitly. This is more challenging, since builder would need to adopt new models for conducting order flow auctions, but is more flexible and allows for a variety of different auction mechanics to be leveraged.
+With this model, builders optimize for their own personal gain, and implicitly sort Memswap bundles to include the bundle that provides the most value to the user. It's challenging for builders to simulate all potential combinations of orders however, and their ability to extract value by transaction ordering requires complex algorithms. The extent to which builders automatically sort based on dynamic tips varies. Giving builders explicit reference to Memswap orders may ultimately prove most useful.
