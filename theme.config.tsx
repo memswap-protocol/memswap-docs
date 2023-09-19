@@ -1,9 +1,18 @@
 import React from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
+import { useRouter } from "next/router";
 
 const github = "https://github.com/memswap-eth/memswap-docs";
 
 const config: DocsThemeConfig = {
+  useNextSeoProps() {
+    const { asPath } = useRouter();
+    if (asPath !== "/") {
+      return {
+        titleTemplate: "%s",
+      };
+    }
+  },
   logo: (
     <svg
       width="175"
