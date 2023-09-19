@@ -1,7 +1,7 @@
 ## Eth Support (memEth)
 
-One typical challenge with intent protocols is that they only work with ERC20 tokens, not native ETH, because the protocol needs to be able pull funds from the users’ wallet with via an allowance. This requires users to wrap and approve their ETH in two separate transactions.
+One typical challenge with intent protocols is that they only work with ERC20 tokens, not native ETH, because the protocol needs to be able pull funds from the users’ wallet via an allowance. This requires users to wrap and approve their ETH in two separate transactions.
 
-However, because orders are designed to be filled immediately, there’s no need to use the canonical WETH contract. We use a fork of WETH, called memETH, which adds an atomic depositAndApprove() method. The user deposits funds when submitting their order, and then solvers can immediately use them to fill, sometimes in the same block.
+However, because Memswap orders are designed to be filled immediately, there’s no need to use the canonical WETH contract. We use a fork of WETH, called memETH, which adds an atomic depositAndApprove() method. The user deposits funds when submitting their order, and then solvers can immediately use them to fill, sometimes in the same block. So despite being a regular ERC20 token, most users will never actually hold a balance of memETH. In the rare event that an order isn’t filled, the user can either use the funds for another order, or withdraw like regular WETH.
 
-So despite being a regular ERC20 token, most users will never actually hold a balance of memETH. In the rare event that an order isn’t filled, the user can either use the funds for another order, or withdraw like regular WETH.
+Check out the memETH contract [here](/contracts/memEth).
