@@ -1,36 +1,36 @@
 ## Capturing Surplus
 
-The MemSwap core uses a dutch auction order format to improve prices for swappers. This works because as the price decays, solvers compete to fill the order given the current block’s order price. While this leads to substantive [UX improvements](/order-flow-auctions/protocol-auction) over traditional decentralized swaps, there are challenges still in achieving **best execution**. In practice, any excess value above a swapper’s minimum current block auction price will be captured by other users in the MEV supply chain (likely validators), and setting auction parameters to maximize value can lead to long time delays in getting orders filled.
+The Memswap protocol auction uses a dutch auction order format to improve prices for swappers. This works because as the price decays, solvers compete to fill the order given the current block’s order price. While this leads to substantive [UX improvements](/order-flow-auctions/protocol-auction) over traditional decentralized swaps, there are challenges still in achieving **best execution**. In practice, any excess value above a swapper’s minimum current block auction price will be captured by other users in the MEV supply chain (likely validators), and setting auction parameters to maximize value can lead to long time delays in getting orders filled.
 
-_What can be done to improve the outcomes for swappers, both in time and value?_ For users looking for the best possible prices in a single block (or just a short time), MemSwap offers an alternative - **shift the monopoly of choosing which solutions are valid to someone with the users’ best interests in mind**.
+_What can be done to improve the outcomes for swappers, both in time and value?_ For users looking for the best possible prices in a single block (or just a short time), Memswap offers an alternative - **shift the monopoly of choosing which solutions are valid to someone with the users’ best interests in mind**.
 
 This actor can then conduct an explicit OFA to determine which solution is best for the user. Consider this:
 
-1.  Alice swapper creates a dutch auction decaying over blocks
-2.  At block t, her order price is 1809 USDC, but the market price is 1830 USDC
-3.  Solvers compete to provide the best possible outcome for Alice, each submitting their bid to the monopolist
-4.  The monopolist conducts an OFA and determines that the best price Alice can get is 1828 USDC, and authorizes that solver to fill the intent
+1.  Alice wishes to swap ETH for USDC and creates a dutch auction decaying over blocks
+2.  At block _t_, her order price is 1809 USDC, but the market price is 1830 USDC
+3.  Solvers compete to provide the best possible outcome for Alice, each submitting their bid to a monopolist with the authority to authorize transactions
+4.  The monopolist conducts an OFA and determines that the best price Alice can get is 1828 USDC, then authorizes that solver to fill the intent
 5.  Alice captures 19 USDC **in surplus**
 
 ![](../../public/ma-mev.png)
 
 ##### Auction Design
 
-The idea of a monopolist isn’t new. UniswapX, 1inch Fusion, the CoWSwap driver, and the MEV-share Node all use a model where monopolists are is used to improve execution. We call this monopolistic actor a _Matchmaker_. Given the current state of transaction building and execution, trusted actors must be relied upon for matchmaking. In the future, the role of the matchmaker may be decentralized.
+The idea of a monopolist isn’t new. UniswapX, 1inch Fusion, the CoWSwap driver, and the MEV-share Node all use a model where monopolists are used to improve execution. We call this monopolistic actor a _Matchmaker_. Given the current state of transaction building and execution, trusted actors must be relied upon for matchmaking. In the future, the role of the matchmaker may be decentralized.
 
-There are many approaches that may be taken to matchmaking, in particular in the context of auctions. It is for this very reason that Memswap is designed to be open and not enshrine any particular matchmaker. There are significant choices to make both about matchmaker architecture and auction mechanics, in particular the choice between permissioned and permissionless architectures.
+There are many approaches that may be taken to matchmaking. It is for this very reason that Memswap is designed to be open and not enshrine any particular matchmaker. There are significant choices to make both about matchmaker architecture and auction mechanics, in particular the choice between permissioned and permissionless architectures.
 
 **Permissioned Auctions**
 
-Permissioned designs like UniSwapX request-for-quote (RFQ) and CoWSwap rely on a central matchmaker and an a permissioned pool of solvers. Permissioned pools of solvers allow matchmakers to trust solvers and bypass route simulation. The key benefits of permissioned auctions is that solvers must uphold reputation and as a result it is easy to prevent griefing when a specific solver is given exclusive rights. However, permissioned pools do not benefit from the economies of scale of true open competition, as only those with permission can provide routes. While permissioned solver have a reputation to uphold, it can be challenging to identify if solvers act out of band. When orders are released to a permissioned pool, they are not truly private. Permissioned pools leak enough information that your signal can be extracted, because extraction cannot be properly attributed.
+Permissioned designs like UniSwapX request-for-quote (RFQ) and CoWSwap rely on a central matchmaker and a permissioned pool of solvers. Permissioned pools of solvers allow matchmakers to trust solvers and bypass route simulation. The key benefit of permissioned auctions is that solvers must uphold reputation and as a result it is easy to prevent griefing when a specific solver is given exclusive rights. However, permissioned pools do not benefit from the economies of scale of true open competition, as only those with permission can provide routes. While permissioned solvers have a reputation to uphold, it can be challenging to identify if solvers act out of band. When orders are released to a permissioned pool, they are not truly private. Permissioned pools leak enough information that your signal can be extracted, because extraction cannot be properly attributed.
 
 **Permissionless Auctions**
 
-Alternatively, auctions can be designed to be permissionless using transaction simulation. The key benefits of permissionless auctions is that they allow that largest possible network of solvers to participate, increasing the likelihood of a solver finding an optimal route for the user. The problems with solvers using signal to extract user value persists, and are better solved by [truly private orders](/privacy). While challenges with simulation exist, they can be overcome.
+Alternatively, auctions can be designed to be permissionless using transaction simulation. The key benefits of permissionless auctions is that they allow that largest possible network of solvers to participate, increasing the likelihood of a solver finding an optimal route for the user. The problems with solvers using signal to extract user value persists, but are better solved by [ private orders](/privacy). While challenges with simulation exist, they can be overcome, especially when builders can be leveraged to determine transaction validity while building blocks.
 
 ##### Current Design
 
-Memswap is designed to allow any type of matchmaker to be built. However, the reference Reservoir matchmaker uses simulation to enable a permissionless solver network in order to access the largest number of solvers possible. Currently, the matchmaker conducts an OFA on behalf of users (Matchmaker Auction), though V2 of the matchmaker will facilitate an implicit Builder Auction.
+Memswap is designed to allow any type of matchmaker to be built. However, the reference [Reservoir matchmaker](/matchmakers/matchmaker-v1) uses simulation to enable a permissionless solver network in order to access the largest number of solvers possible. Currently, the matchmaker conducts an OFA on behalf of users (Matchmaker Auction), though V2 of the matchmaker will facilitate an implicit Builder Auction.
 
 <u>Learn more about</u>:
 

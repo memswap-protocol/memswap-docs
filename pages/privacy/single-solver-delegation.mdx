@@ -1,6 +1,6 @@
 ## Single Solver Delegation
 
-MemSwap allows for single solver delegation, a mechanic that lets a single reputable solver provide the best route to a user and submit the bundle to trusted builders privately.
+Memswap allows for single solver delegation, a mechanic that lets a single reputable solver provide the best route to a user and submit the bundle to trusted builders privately.
 
 Single solver delegation works like this:
 
@@ -8,6 +8,6 @@ Single solver delegation works like this:
 - Orders are routed directly to a trusted solver (mediated by a matchmaker)
 - This solver can privately submits the transaction bundle to a builder using trusted private channels like private RPCs.
 
-Learn more about the technical details of Private MemSwap Orders here.
+##### Why a Single Solver?
 
-Private orders of this nature rely on trusted relationships with solvers, but while is seems like more trust is needed, in many ways true privacy requires less trust. When signal orders are submitted to permissioned or public pools (in fact any “pool” with more than one solver), it is challenging to attribute front-running. Identifying that some amount of MEV has occurred once the block has landed isn’t the hard part, it’s deciding who is responsible. Since any solver could have been the one to leak information, it is impossible to remove privileges from offending solvers. True privacy, as in, directing orders to a single solver makes attribution simple and incentivizing solvers to cooperate.
+Private orders of this nature rely on trusted relationships with solvers. But while is seems like more trust may be needed to interact with just one solver, in many ways true privacy requires less trust. When signal orders are submitted to permissioned or public pools (in fact any “pool” with more than one solver), it is challenging to attribute front running, even when solvers may be pushed for griefing. Identifying that some amount of MEV has occurred once the block has landed isn’t hard, it’s deciding who was responsible. Since any solver could have been the one to leak information, it is impossible to remove privileges from or slash offending solvers. True privacy, as in, directing orders to a single solver, makes attribution simple and incentivizes solvers to cooperate in order to get future order flow.

@@ -10,7 +10,7 @@ The V2 matchmaker conducts an Implicit Builder Auction in order to improve price
 - Applications submit orders to the Mempool using intentful transactions Solvers listen to the Mempool for order discovery.
 - For the first 9 seconds of the block, the matchmaker accepts solutions to users’ intents, and requires
   - A priority fee of 1 gwei
-  - A \_dynamic tip_that uses coinbase.transfer() to increase the tip quantity based on the total value to the user
+  - A _dynamic tip_ that uses coinbase.transfer() to increase the tip quantity based on the total value to the user
 - Matchmaker releases signatures to solves that conform authorizing submission
 - Bundles sent to builders are then optmized for inclusion in the block, resulting in an implicit auction
   - Builders choose the bundles that maximize the value of the block

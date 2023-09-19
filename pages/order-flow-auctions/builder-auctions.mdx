@@ -1,16 +1,16 @@
 ## Builder Auctions
 
-Block builders are in a unique position, where they are the only entities that can simulate solutions in the context of the next block, even having the ability to adjust the positioning of a solution with a block. This represents a tantalizing opportunity to conduct a “perfect” auction, ranking solutions exactly based on the value they return to users in the context of the next block.
+Block builders are in a unique position. They are the only entities that can simulate solutions in the context of the next block, even having the ability to adjust the positioning of a solution with a block. This represents a tantalizing opportunity to conduct a “perfect” auction, ranking solutions exactly based on the value they return to users in the context of the next block.
 
-V2 of MemSwap proposed an Implicit Builder Auction, consistent with the current design of MEV-share.
+V2 of Memswap proposed an **_Implicit Builder Auction_**, that leverages builder tips to incentivize builders to conduct the OFA.
 
 ##### Implicit Builder Auction
 
-The proposed v2 design of MemSwap uses an Implicit Builder Auction design. This model:
+The implicit builder auction works as follows:
 
 - Allows any solver to submit proposed solutions
-- The Matchmaker filters solutions that conform to predetermined standards and sends the order flow to all builders that participate in MEV-share
-- Matchmaker forces solutions to set a tip relative to user value received using MEV-share validity conditions
+- Matchmaker forces solutions to set a tip relative to user value received by requiring a 1 gwei priority fee and a _dynamic tip_ using coinbase.transfer()
+- The Matchmaker filters solutions that conform to predetermined standards and sends order flow to trusted builders
 - The builder, maximizing value of the block, performs an implicit OFA against the _current block being built_
 
 One alternative to an implicit builder auction would be for builders to conduct auctions explicitly. This is more challenging, since builder would need to adopt new models for conducting order flow auctions, but is more flexible and allows for a variety of different auction mechanics to be leveraged.

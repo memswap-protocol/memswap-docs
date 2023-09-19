@@ -1,6 +1,6 @@
 ## Concealed Orders
 
-Concealed orders follow a similar mechanic to [“programmable privacy” in MEV-share.](https://collective.flashbots.net/t/mev-share-programmably-private-orderflow-to-share-mev-with-users/1264) In order to limit signal leakage, key aspects of the order are concealed so the information cannot be used out of band. In particular, users might wish to hide the order maker address, and the quantity of tokens to be swapped.
+Concealed orders follow a similar mechanic to [“programmable privacy” in MEV-share.](https://collective.flashbots.net/t/mev-share-programmably-private-orderflow-to-share-mev-with-users/1264) In order to limit signal leakage, key aspects of the order are concealed so the information cannot be used out of band. In particular, users might wish to hide the maker address and the quantity of tokens to be swapped.
 
 How it works:
 
@@ -10,4 +10,4 @@ How it works:
 - Matchmakers choose the best solutions and construct tx bundles
 - Matchmakers submit tx bundles to builders
 
-This type of programmable privacy can prevent signal leakage, so it is advantageous when there are high signal trades. However, when trades are not high signal, privacy of this sort can be limiting, since hiding information can prevent solvers from constructing the best possible orders, and as a result may limit users upside.
+This type of programmable privacy can prevent signal leakage, so it is advantageous when there are high signal trades. However, when trades are not high signal, privacy of this sort can be limiting, since hiding information can prevent solvers from constructing the best possible orders, and as a result may limit user upside.

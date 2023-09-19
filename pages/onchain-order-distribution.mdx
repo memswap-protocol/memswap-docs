@@ -2,20 +2,20 @@
 
 One powerful benefit of intents is that they can be made publicly. It’s true that high signal intents may still experience MEV, but in general the lack of known route means that intents can be public.
 
-One might ask, _why would you want to make them publicly if private options are available?_ Because public orders can leverage a **permissionless** network of solvers, and to get the best prices you want the largest number of solvers searching for routes possible. Public and permissionless intent pools require coordinated adoption (& propogation incentives) and DDOS resistance. Many designs for permissionless and public mempools have been explored, including for [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337) UserOperations. You can learn more about intent-pool designs and their challenges [here](https://www.paradigm.xyz/2023/06/intents).
+One might ask, _why would you want to distribute intents publicly if private options are available?_ Because public orders can leverage a **permissionless** network of solvers, and to get the best prices you want the largest number of solvers searching for routes possible. Public and permissionless intent pools require coordinated adoption (& propogation incentives) and DDOS resistance. Many designs for permissionless and public mempools have been explored, including for [ERC-4337](https://eips.ethereum.org/EIPS/eip-4337) UserOperations. You can learn more about intent-pool designs and their challenges [here](https://www.paradigm.xyz/2023/06/intents).
 
-To date, the Ethereum Mempool has not been considered as a potential intent pool, do its perceived lack of compatibility with gasless intents, challenges with DDOS, and concerns around MEV extraction. MemSwap overcomes these challenges with novel onchain orderbook called _MemBook_.
+To date, the Ethereum Mempool has not been considered as a potential intent pool, do its perceived lack of compatibility with gasless intents, challenges with DDOS, and concerns around MEV extraction. Memswap overcomes these challenges with novel onchain orderbook called _MemBook_.
 
 ## MemBook
 
-MemBook is an onchain orderbook that leverages the Ethereum Mempool using a novel mechanic for order distribution called [Intentful Transactions](/intentful-transactions). An intentful transaction is **a transaction that embeds a user's intent**. The order is hashed and appended to the transactions calldata, allowing solvers to parse approval transactions and retrieve orders. In the case of MemSwap the transactions are users’ token approvals. Orders are propogated using Mempool infrstructure alongside approval transactions, leading to cheap and rapid order propogation, including the ability to approval and fill and trade in a single block.
+MemBook is an onchain orderbook that leverages the Ethereum Mempool using a novel mechanic for order distribution called [Intentful Transactions](/intentful-transactions). An intentful transaction is **a transaction that embeds a user's intent**. The order is hashed and appended to the transactions calldata, allowing solvers to parse approval transactions and retrieve orders. In the case of Memswap the transactions are users’ token approvals. Orders are propogated using Mempool infrstructure alongside approval transactions, leading to cheap and rapid order propogation, including the ability to approve and fill and trade in a single block.
 
-Membook orders are **_not_** gasless, but are highly efficient for onchain orders as the order object is packed into the transactions calldata. In a world without unlimited approvals (a known security threat for users), where users approve the appropriate quantity of tokens for a specific trade, MemBook is nearly free orderbook, since approval transactions can be piggybacked with orders.
+Membook orders are **_not_** gasless, but are highly efficient for onchain orders as the order object is packed into the transactions calldata. In a world without unlimited approvals (a known security threat for users), where users approve the appropriate quantity of tokens for a specific trade, MemBook is a nearly free orderbook, since approval transactions can be piggybacked with orders.
 
 → Learn more about [Intentful Transactions](/intentful-transactions)
 
-Leveraging MemBook means that MemSwap can be used as a **fully decentralized market order protocol**, without the use of any third parties. MemSwap can use any compliant order for execution, but it was designed to use intentful approvals (to minimize gas for packing the order).
+Leveraging MemBook means that Memswap can be used as a **fully decentralized market order protocol**, without the use of any third parties. Memswap can use any compliant order for execution, but it is designed to use intentful , orders were designed to minimize gas in packing the order.
 
-→ Learn more about [MemSwap Orders](/protocol-features)
+→ Learn more about [Memswap Orders](/protocol-features)
 
-As we discuss in the [Private Market Orders](/privacy), not all intents should be propogated publicly, and MemBook is undesirable for orders with high signal. MemSwap provides alternative solutions where privacy is preferred.
+As we discuss in [Private Market Orders](/privacy), not all intents should be propogated publicly, and MemBook is undesirable for orders with high signal. Memswap provides alternative solutions where privacy is preferred.
