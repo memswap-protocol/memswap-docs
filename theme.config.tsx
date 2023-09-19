@@ -122,6 +122,15 @@ const config: DocsThemeConfig = {
   },
   docsRepositoryBase: `${github}/tree/main/`,
   sidebar: { defaultMenuCollapseLevel: 1, autoCollapse: true },
+  head: (
+    <>
+      <meta name="twitter:title" content="Memswap" />
+      <meta
+        name="twitter:description"
+        content="An EVM protocol for trading tokens and NFTs using decentralized market orders"
+      />
+    </>
+  ),
   footer: {
     text() {
       return (
