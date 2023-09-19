@@ -1,6 +1,5 @@
 import React from "react";
 import { DocsThemeConfig } from "nextra-theme-docs";
-import { useRouter } from "next/router";
 
 const github = "https://github.com/memswap-protocol/memswap-docs";
 
@@ -8,7 +7,18 @@ const config: DocsThemeConfig = {
   useNextSeoProps() {
     return {
       titleTemplate: "%s",
-      openGraph: { images: [{ url: "https://docs.memswap.xyz/og.png" }] },
+      openGraph: {
+        images: [{ url: "https://docs.memswap.xyz/og.png" }],
+        description:
+          "An EVM protocol for trading tokens and NFTs using decentralized market orders",
+      },
+      description:
+        "An EVM protocol for trading tokens and NFTs using decentralized market orders",
+      twitter: {
+        cardType: "summary_large_image",
+        handle: "@MemswapProtocol",
+        site: "docs.memswap.xyz",
+      },
     };
   },
   logo: (
