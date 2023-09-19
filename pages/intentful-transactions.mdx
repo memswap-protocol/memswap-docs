@@ -1,0 +1,13 @@
+## Intentful Transactions
+
+An intentful transaction is a transaction that embeds a user's intent. Intentful transactions represent a general way to pass intents into the MemPool for distribution, and are particularly useful when approval transactions are required, since the approval can be piggybacked with an intent. While we use token balance approvals in MemSwap, intentful transactions could be used in other scenarios.
+
+One key advantage of intentful transactions is that they do not rely on Ethereum state for distribution. Because the orders are signed and passed into the mempool, the orders can be used as soon as they are discovered, increasing distribution speed and use. A user may send an intentful approval and have the transactions bundled with a swap transaction and executed within a single block.
+
+In the case of MemSwap, orders are embedded into approval transactions for the tokens required in the swap (or transfers for Eth swaps).
+
+We construct intentful approvals as follows:
+
+1. An EIP-712 compliant order is signed and hashed
+2. The hash is appended into the approval transaction’s calldata. Here is an [example transaction](https://goerli.etherscan.io/tx/0x3214273fa15ce600057299dfc02e881c2896bce1f7005480dd2b4aa2d9d47b15) with an intent appended in the call data. This approval transaction calls the depositAndApprove method, with the intent appended in the calldata.
+3. The approval transaction is submitted to the MemPool, where solvers may parse approval transactions for intents, bundle the approval transaction with a filling transaction and submit to builders.

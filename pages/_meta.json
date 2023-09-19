@@ -1,21 +1,22 @@
 {
   "-- Introduction": {
     "type": "separator",
-    "title": "Introduction"
+    "title": "Protocol Overview"
   },
-  "index": "Protocol Overview",
-  "why-intents": "Why Intents?",
-  "what-is-memswap": "What is MemSwap?",
-  "development-progress": "Development Progress",
-  "decentralizing-memswap": "Decentralizing MemSwap",
+  "index": "Introduction",
+  "intent-based-swaps": "Intent-based Swaps",
+  "onchain-order-distribution": "Onchain Order Distribution (Memook)",
+  "order-flow-auctions": "Order Flow Auctions",
+  "privacy": "Private Market Orders",
+  "nft-composability": "NFT Composability",
 
   "-- Technical Docs": {
     "type": "separator",
-    "title": "Core Technical Components"
+    "title": "Technical Docs"
   },
-
-  "protocol": "Protocol",
-  "order-flow": "Order Flow",
+  "intentful-transactions": "Intentful Transactions",
+  "contracts": "Contracts",
+  "protocol-features": "Protocol Features",
   "matchmakers": "Matchmakers",
   "solvers": "Solvers",
   "matchmakers": "Matchmakers",
@@ -28,22 +29,21 @@
     "type": "separator",
     "title": "Tools"
   },
+  "development-progress": "Development Progress",
   "interface": "Interface",
-  "api": "API",
   "github_link": {
     "title": "Github",
     "href": "https://github.com/shuding/nextra"
   },
   "discord_link": {
     "title": "Discord",
-    "href": "https://github.com/shuding/nextra"
+    "href": "https://discord.gg/eVMbBPvn"
   },
-  "security-contracts": "Security & Contracts",
 
   "contact": {
     "title": "Contact ↗",
     "type": "page",
-    "href": "https://twitter.com/shuding_",
+    "href": "https://twitter.com/reservoir0x",
     "newWindow": true
   }
 }

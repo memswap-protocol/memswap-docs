@@ -1,0 +1,19 @@
+## Order Types
+
+When constructing a Memswap order, you achieve different order types based on how you set the start/end time and start/end price.
+
+**Dutch Auction**
+
+By setting startPrice>endPrice, the price will linearly decay over the course of the order’s lifetime. This can be used to discover the true market price with limited information, because the order will only be filled once it reaches a price someone is willing to pay.
+
+**Limit Order**
+
+By setting startPrice=endPrice, you get a limit order that only be filled at an exact price.
+
+**Market Order**
+
+If you already know the rough price of assets that you want, you can construct a dutch auction, setting the startPrice to the currentPrice, and the endPrice to the slippage you’re willing to pay. This will result in the order being filled very quickly at roughly the market rate.
+
+**TWAP Order**
+
+While not natively supported, more complicated order types such as TWAPs can be constructed using Smart Orders.

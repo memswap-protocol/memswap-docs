@@ -1,7 +1,5 @@
 {
-  "technical-matchmaker-overview": "Technical Matchmaker Overview",
-  "last-block-auction": "Last Block Auction",
-  "implicit-builder-auction": "Implicit Builder Auction",
-  "expliicit-builder-auction": "Explicit Builder Auction",
+  "matchmaker-v1": "Matchmaker V1 (live)",
+  "matchmaker-v2": "Matchmaker V2 (in development)",
   "running-a-matchmaker": "Guide to Running a Matchmaker"
 }

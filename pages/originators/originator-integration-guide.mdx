@@ -1,0 +1,77 @@
+## Application Memswap Integration Guide
+
+To integrate Memswap into your wallet or application take the following steps:
+
+1. Fetching Quotes
+   In order to parameterize orders effectively, start by fetching a market quote by a known exchange, such as uniswap or 1inch.
+
+2. Choosing Swap Mode
+   Decided based on your user’s preferences to present a specific Swap Mode or to allow flexibility for you users
+
+3. Submitting Swaps
+   Construct the appropriate swap order and submit the intentful approval with the designated matchmaker, if you choose to use one.
+
+4. Following Swap Success
+   Once the swap is submitted, listen for the IntentSolved event to be emitted from the memswap contract and check that the intent hash from the event is the same as the user’s submitted order
+
+**Example references for submitting intents:**
+
+**ERC20**: https://github.com/memswap-eth/memswap/blob/main/scripts/intent-erc20.ts
+
+**ERC721**: https://github.com/memswap-eth/memswap/blob/main/scripts/intent-erc721.ts
+
+**Memswap Interface:**
+
+https://github.com/memswap-eth/memswap-interface/blob/main/components/swap/SwapModal.tsx#L157
+
+Below is an example query for fetching a user’s intent history:
+
+```js query GetUserIntents($maker: String) {
+    intents(
+      where: { maker: $maker }
+      orderBy: "endTime"
+      orderDirection: "desc"
+    ) {
+      id
+      isBuy
+      sellToken {
+        id
+        isNative
+        isToken
+        chainId
+        decimals
+        symbol
+        name
+        address
+        icon
+      }
+      buyToken {
+        id
+        isNative
+        isToken
+        chainId
+        decimals
+        symbol
+        name
+        address
+        icon
+      }
+      maker
+      solver
+      source
+      feeBps
+      surplusBps
+      startTime
+      endTime
+      isPartiallyFillable
+      amount
+      endAmount
+      startAmountBps
+      expectedAmountBps
+      isCancelled
+      isPreValidated
+      events
+      amountFilled
+    }
+  }
+```

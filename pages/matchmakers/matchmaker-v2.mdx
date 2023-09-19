@@ -1,0 +1,29 @@
+## Matchmaker V2
+
+V2 of the Reservoir matchmaker for MemSwap is currently under development and should be released shortly. The V2 matchmaker has two additions compared to V1 - a _implicit builder auction_ and _programmable privacy._
+
+##### Matchmaker-mediated Implicit Builder Auction
+
+The V2 matchmaker conducts an Implicit Builder Auction in order to improve price execution for any orders that nominate it. This is an improvement over a last block auction because builders can optimize for the best solutions in the context of the current block being built. Here we describe the implementation details of this matchmaker V2.
+
+- The matchmaker is nominated by users or applications who set the matchmaker as the exclusive authorizer in the order.
+- Applications submit orders to the Mempool using intentful transactions Solvers listen to the Mempool for order discovery.
+- For the first 9 seconds of the block, the matchmaker accepts solutions to users’ intents, and requires
+  - A priority fee of 1 gwei
+  - A \_dynamic tip_that uses coinbase.transfer() to increase the tip quantity based on the total value to the user
+- Matchmaker releases signatures to solves that conform authorizing submission
+- Bundles sent to builders are then optmized for inclusion in the block, resulting in an implicit auction
+  - Builders choose the bundles that maximize the value of the block
+  - Since tips are dynamically set to be greater for bundles that improve user outcomes, builder prioritize bundles that increase user value while simulating against the current block being built.
+
+Learn more about [builder auctions](/order-flow-auctions/builder-auctions)
+
+##### Programmable Privacy
+
+In order to limit signal leakage, key aspects of orders can be concealed so the information cannot be used out of band. In particular, users might wish to hide the order maker address, and the quantity of tokens to be swapped.
+
+- Users or applications opt into to concealed orders
+- Orders are routed to matchmakers who reveal hints to solvers
+- Solvers use the hints to propose viable solutions
+- Matchmakers choose the best solutions and construct tx bundles
+- Matchmakers submit tx bundles to builders

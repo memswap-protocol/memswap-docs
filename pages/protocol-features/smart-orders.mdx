@@ -1,0 +1,5 @@
+## Smart Orders
+
+When signing with EIP-1271, it’s possible for a contract to dynamically change validity over time, based on arbitrary conditions. This allows for creating more complicated “smart orders”, as pioneered by [Cowswap](https://docs.cow.fi/tutorials/how-to-place-erc-1271-smart-contract-orders/smart-orders).
+
+Normally, Memswap will cache the signature check to save gas, which interferes with such functionality. In order to enable it, set `isSmartOrder=true` and the caching will be skipped.

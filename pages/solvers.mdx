@@ -1,11 +1,11 @@
 # Solvers
 
-MemSwap orders are submitted as approval transactions with appended intents in the calldata. These intents can be executed by actors that parse the intents from the calldata, so long as the conditions of the intent can be met. Actors that bundle intents and submit them are called **solvers**.
+MemSwap orders are submitted as approval transactions with appended intents in the calldata or directly to matchmakers. These intents can be executed by actors that parse the intents from the calldata, so long as the conditions of the intent can be met. Actors that bundle intents and submit them are called **solvers**.
 
-To execute MemSwap intents (i.e orders), solvers must parse intents from approval transactions and submit them to builders or an assigned matchmaker depending on the requirement of the intent. The parsing of intents can be done by listening to all approval transactions and checking if there's any additional data at the end of the calldata. That additional data should be parsed according to the expected intent format and then validated. Filling intents is done by bundling together the approval transaction and the execution transaction.
+To execute MemSwap intents (i.e orders), solvers must parse intents from approval transactions or listen to matchmaker orderbooks and submit them to builders or an assigned matchmaker depending on the requirement of the intent. The parsing of intents can be done by listening to all approval transactions and checking if there's any additional data at the end of the calldata and listening to matchmakers directly. That additional data should be parsed according to the expected intent format and then validated. Filling intents is done by bundling together the approval transaction and the execution transaction.
 
 If you are interested in solving for MemSwap, or curious to learn more, check out:
 
-- [Discovering MemSwap Orders](/discovering-memswap-orders)
-- [Solving for MemSwap](/solving-for-memswap)
-- [Filling MemSwap Orders](/filling-memswap-orders)
+- [Discovering MemSwap Orders](/solvers/discovering-memswap-orders)
+- [Solving for MemSwap](/sovlers/solving-for-memswap)
+- [Solver Integration Guide](/solvers/solver-integration-guide)

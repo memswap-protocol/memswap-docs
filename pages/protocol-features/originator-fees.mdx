@@ -1,0 +1,13 @@
+## Originator Fees
+
+Memswap offers built-in fee mechanisms that make it easy for apps / wallets to collect fees when their users swap. There are two options:
+
+1. **Flat Fee**
+
+Configure a bps percentage fee that is collected from the total swap amount
+
+1. **Surplus**
+
+When a swap returns more than the expected amount (due to solvers competing, or favorable AMM price movement), apps can decide how much of this “surplus” is collected as a fee vs returned to the user.
+
+One promising fee design that this enables is for apps to take dynamic fees, abstracting the complexity of slippage away from users. E.g. instead of charging a 0.5% fee, while also setting a 0.5% slippage, the app could set 0% slippage, and collect the surplus as a fee. This way, the user gets a clean guaranteed price, while the app absorbs the complexity of slippage into it’s fee revenue.

@@ -1,0 +1,17 @@
+## Concealed Orders
+
+Memswap allows for concealing parts of an order, to provide privacy. To start users/apps can hide:
+
+- maker
+- last 8 bytes of signature
+
+The goal is to give honest solvers all of the information they need to generate efficient solutions, without malicious actors being able to use that information to frontrun. For more on how this works, read the section on Privacy.
+
+The flow for using concealed orders works like this:
+
+- User creates a regular order, and sends privately to Matchmaker
+- Matchmaker strips the maker and end of signature
+- Matchmaker distributes order to Solvers
+- Solvers generate solutions and submit them to the Matchmaker
+- Matchmaker creates a bundle that prepends their own transaction, that reveals the missing order information onchain
+- When validating the solution, the Protocol detects that some order information is missing, and reads it from the revealed data, so that the full order data is available

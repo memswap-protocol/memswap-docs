@@ -1,0 +1,30 @@
+## Matchmaker V1
+
+The current V1 matchmaker for MemSwap is hosted by Reservoir (reservoir-matchmaker.eth). The matchmaker has two modes - a _public last block auction_ and _single solver submission._
+
+##### Last Block Public Auction
+
+The matchmaker conducts a Last Block Auction in order to improve price execution for any orders that nominate it. Here we describe the implementation details of this matchmaker.
+
+- The matchmaker is nominated by users or applications who set the matchmaker as the exclusive authorizer in the order.
+- Applications submit orders to the Mempool using intentful transactions. Solvers listen to the Mempool for order discovery.
+- For the first 9 seconds of the block, the matchmaker accepts solutions to users’ intents, and simulates orders against the last block
+  - Solutions must solve a single route (no order COWs)
+- Matchmaker conducts an order flow auction, accepting any orders that are within a fixed percentage of the top bid
+- Matchmaker releases signatures to solvers authorizing submission
+- Solvers must respond with a signed transaction
+- Solvers are then free to submit bundles builders
+
+Learn more about last block auctions and check out the code for the open-source Reservoir matchmaker
+
+##### Single Solver Submission
+
+For users wanting privacy, the V1 matchmaker allows users to submit intents privately to a single solver.
+
+- Users submit private orders directly to the matchmaker
+- The matchmaker nominates a single solver and submits the order to a trusted solver directly
+- The solver submits the bundle to builders using known privacy channels such as private RPCs
+
+##### Order Propagation
+
+- You can send orders to it for faster distribution to solvers

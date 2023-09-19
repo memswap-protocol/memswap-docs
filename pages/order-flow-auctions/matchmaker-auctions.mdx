@@ -1,0 +1,23 @@
+## Matchmaker Auction
+
+Memswap uses Order Flow Auctions (OFAS) to Capture Surplus for users above the base price of their order, improve execution execution and speed. In order to conduct OFAs, MemSwap uses _Matchmakers,_ monopolists that conduct or facilitate OFAs on behalf of users and applications. MemSwap is specifically designed to avoid enshrined matchmakers. The matchmaker may be a trusted third party, or run by the swapping application itself, such as a wallet.
+
+The current design of MemSwap uses a Last Block Auction design. This model:
+
+- Allows any solver to submit proposed solutions
+- The Matchmaker simulates all proposed solutions for validity against the **\***most recently landed block**\***
+- Matchmaker conducts an order flow auction (OFA) on valid solutions
+- The winning fillers receive exclusive rights to fill these orders in the next block
+
+##### Challenges with Last Block Auctions
+
+One significant challenge of last block auctions is that the best outcome cannot be chosen by the matchmaker deterministically. Consider for instance a case where two solutions are provided for Alice, like the following:
+
+- Solution A: 1 Eth for 1860 USDC with a maximum of 2% slippage
+- Solution B: 1 Eth for 1858 USDC with zero slippage
+
+In this case there is no way to determine which solution is better without understanding all the transactions that will go into the next block. If Solution A doesn’t slip at all, then it is preferred. If is slips 2%, then it is worse than solution B.
+
+The current design contends with this problem by releasing several solutions near the best price. This minor flaw is the reason that the prospective design for MemSwap auctions is to use a builder auction, where order flow auctions can be conducted against the block that is currently being built.
+
+Learn more about [Builder Auctions](/order-flow-auctions/builder-auctions).

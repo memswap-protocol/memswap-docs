@@ -1,0 +1,15 @@
+## Memswap.xyz Interface
+
+[MemSwap.io](http://MemSwap.xyz) is a reference implementation of the MemSwap protocol. The goal is to showcase a variety of different features of MemSwap including the ability to swap tokens and NFTs using three key modes - Optimized, Trustless, and Private.
+
+**Optimized**
+
+The default mode for [MemSwap.io](http://MemSwap.xyz) is “Optimized” is leverages the Reservoir matchmaker (reservoir-matchmaker.eth) to conduct a matchmaker OFA. This mode is designed to give users the best prices in the shortest amount of time.
+
+**Trustless**
+
+Users may opt into the “trustless” mode, which uses **no** third parties. The mode uses an dutch auction orders and propogates the orders using the users token approval transaction through the MemPool. Once solvers can fill the order, they will bundle the order and submit it to builders.
+
+**Private**
+
+The [MemSwap.io](http://MemSwap.xyz) private mode privately submits orders to the Reservoir matchmaker and reference solver, before using private RPCs to submit transaction bundles to builders.

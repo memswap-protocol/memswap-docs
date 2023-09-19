@@ -1,0 +1,14 @@
+{
+  "originator-fees": "Originator Fees",
+  "gasless-swaps": "Permit/Gasless Swaps",
+  "partialp-fills": "Partial Fills",
+  "smart-contract-wallets": "Smart Contract Wallets",
+  "smart-orders": "Smart Orders",
+  "trade-direction": "Trade Direction",
+  "order-types": "Order Types",
+  "onchain-orderbook": "Onchain Orderbook",
+  "concealed-orders": "Concealed Orders",
+  "nft-purchasing": "NFT Purchasing",
+  "memEth": "Eth Support (memEth)",
+  "permissioned-solving": "Permissioned Solving"
+}

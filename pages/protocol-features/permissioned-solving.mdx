@@ -1,0 +1,5 @@
+## Permissioned Solving
+
+Memswap supports specifying a single solver that is allowed to fill an order. At the the most basic level, this allows conducting an RFQ Auction (like UniswapX) and giving exclusive filling rights to the winner.
+
+Memswap takes this one step further by enabling that solver to authorize other solvers, either with an onchain transaction or a signature. This enables flexible order flow auctions to be built on-top. For example, the user would nominate a matchmaker as the solver, who would run an auction and give authorization signatures to anyone who submitted a sufficiently high solution.

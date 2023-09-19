@@ -1,0 +1,9 @@
+## Private Market Orders
+
+For swaps with signal (i.e. ones that will move the market), revealing trade information publicly is problematic. When a trade with sufficient power to move the market hits a public or even semi-public pool, it will likely be frontrun. Intents provide some MEV reduction, since searchers do not know which route will be taken. But for high enough signal trades, even routeless orders can be exploited. MEV bots may still act out of band to capture value before the user can land her transaction onchain.
+
+MemSwap provides two solutions for privacy preservation:
+
+1. [Single solver delegation](/privacy/single-solver-delegation): Private submission of orders directly to a single trusted solver
+2. [Concealed Orders](/privacy/concealed-orders): Programmable privacy (à la [MEV-share](https://collective.flashbots.net/t/mev-share-programmably-private-orderflow-to-share-mev-with-users/1264))to limit solvers' ability to frontrun
+   )
