@@ -1,11 +1,6 @@
-# Nextra Docs Template 
-
-This is a template for creating documentation with [Nextra](https://nextra.site).
-
-[**Live Demo →**](https://nextra-docs-template.vercel.app)
-
-[![](.github/screenshot.png)](https://nextra-docs-template.vercel.app)
-
+![memswap-banner](https://github.com/memswap-protocol/memswap-docs/assets/41527174/be646310-91fb-476b-82db-8ade1ecaf540)
+# Memswap Docs 
+[View Docs](https://docs.memswap.xyz/)
 ## Quick Start
 
 Click the button to clone this repository and deploy it on Vercel:
@@ -14,9 +9,9 @@ Click the button to clone this repository and deploy it on Vercel:
 
 ## Local Development
 
-First, run `pnpm i` to install the dependencies.
+First, run `yarn` to install the dependencies.
 
-Then, run `pnpm dev` to start the development server and visit localhost:3000.
+Then, run `yarn dev` to start the development server and visit localhost:3000.
 
 ## License
 
