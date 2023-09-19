@@ -1,18 +1,18 @@
 ## NFT Composability
 
-The NFT market has evolved to feature Aggregators,  that unlock a number of different advanced trading features:
+The NFT market has evolved to feature _Aggregators_ that unlock a number of different advanced trading features:
 
-* **Cross-Marketplace Sweeping** - Buy the cheapest items in a collection, no matter which marketplace they are listed on
-* **Purchase Currency** - Buy NFTs with any currency, not just what they are listed in
-* **Slippage Tolerance** - Avoid failed transactions by getting the next best listing if cheapest no longer available
-* **Gasless** - Trade without ETH for gas, using ERC20 tokens or sponsorship
-* **Royalty Normalization** - Add royalties to orders that didn't respect creator configuration
-* **Taker Fees** - Allow apps to collect fees on top for driving trading
+- **Cross-Marketplace Sweeping** - Buy the cheapest items in a collection, no matter which marketplace they are listed on
+- **Purchase Currency** - Buy NFTs with any currency, not just what they are listed in
+- **Slippage Tolerance** - Avoid failed transactions by getting the next best listing if cheapest no longer available
+- **Gasless** - Trade without ETH for gas, using ERC20 tokens or sponsorship
+- **Royalty Normalization** - Add royalties to orders that didn't respect creator configuration
+- **Taker Fees** - Allow apps to collect fees on top for driving trading
 
 Today, all of these features require the use of a "router" contract, that adds functionality on top of the base marketplace contracts. This works works fine when liquidity is open and permissionless, but increasingly NFT liquidity comes with restrictions that threaten composability:
 
-* Marketplaces like Blur that prevent all smart contracts from interacting
-* NFT standards like ERC-721C that limit which only allow whitelisted marketplace protocols to interact
+- Marketplaces like Blur that prevent all smart contracts from interacting
+- NFT standards like ERC-721C that limit which only allow whitelisted marketplace protocols to interact
 
 Memswap is able to retain composability, even with these restrictions, by using bundles of txs (sent from a solver's EOA) instead of router smart contracts. Memswap is able to validate that the conditions of a swap are satisfied, without actually performing the swap itself, or requiring that it happens in a single atomic transaction. For example, let’s say I want to use USDC to buy a restricted NFT listed in ETH. This can be solved across multiple txs:
 
