@@ -1,5 +1,11 @@
 ## Discovering Intents
 
-Intents are propogated either through onchain orders via intentful approvals or directly to matchmakers. Solvers may choose one or both methods for discovering intents.
+Intents are propogated through [intentful transactions](/intentful-transactions).
 
-tx-listener: responsible for discovering intents from mempool transactions
+In order to discover intents, solvers must listen to the Mempool, then parse memswap orders out of the transactions calldata
+
+1. Listening to the Mempool
+   [tx-listener](https://github.com/memswap-protocol/memswap/blob/main/src/solver/jobs/tx-listener.ts#L157): responsible for discovering intents from mempool transactions
+
+2. Parsing Memswap orders
+   [tx-order-parsing](https://github.com/memswap-protocol/memswap/blob/main/src/solver/jobs/tx-listener.ts#L157): Parse intents from calldata using the known order format.
