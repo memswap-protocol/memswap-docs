@@ -4,7 +4,7 @@ The current V1 matchmaker for Memswap is hosted by Reservoir (reservoir-matchmak
 
 ##### Last Block Public Auction
 
-The matchmaker conducts a Last Block Auction in order to improve price execution for any orders that nominate it. You can learn more about the matchmaker auction [here](/order-flow-auctions/matchmaker-auction). Here we describe the implementation details of the V1 Matchmaker:
+The matchmaker conducts a Last Block Auction in order to improve price execution for any orders that nominate it. You can learn more about the matchmaker auction [here](/order-flow-auctions/matchmaker-auctions). Here we describe the implementation details of the V1 Matchmaker:
 
 - The matchmaker is nominated by users or applications who set the matchmaker as the exclusive authorizer in the order.
 - Applications submit orders to the Mempool using intentful transactions. Solvers listen to the Mempool for order discovery.
